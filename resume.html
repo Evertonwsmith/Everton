@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Everton | Resume</title>
+    <link rel="stylesheet" href="src/theme.css" />
+    <link rel="stylesheet" href="src/resume.css" />
+</head>
+
+<body>
+    <header class="topnav" id="topnav">
+        <div class="topnav-inner">
+            <div class="navlinks" id="navlinks">
+                <a href="index.html">Home</a>
+                <a href="resume.html">Resume</a>
+                <a href="projects.html">Projects</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="resume-hero">
+            <h1>Everton Smith</h1>
+            <p>Software Engineer | Electrical Engineering Student</p>
+        </section>
+
+        <section class="resume-shell">
+            <article class="resume-section">
+                <h2>Experience</h2>
+                <ul class="resume-list">
+                    <li><strong>Software Developer, UKG.</strong> <i>Kelowna, BC</i> — 2019–2025</li>
+                    <ul>
+                        <li>Developed and maintained Cloud-based Workforce Management application.
+                        </li>
+                        <li>Collaborated with cross-functional teams to deliver high-quality software solutions</li>
+                        <li>Investigated and resolved high-priority defects in scheduling and time-off modules</li>
+                    </ul>
+                </ul>
+            </article>
+            <article class="resume-section">
+                <h2>Education</h2>
+                <ul class="resume-list">
+                    <li>Electrical Engineering Technology — SAIT (2026–Present)</li>
+                    <li>BSc Computer Science — UBC Okanagan (2019)</li>
+                    <li>
+                        Mount Boucherie Secondary School (2013)</li>
+
+                </ul>
+            </article>
+            <article class="resume-section">
+                <h2>Skills</h2>
+                <ul class="resume-list">
+                    <li>Circuit Design and Electrical Analysis</li>
+                    <li>Software Development</li>
+                    <ul>
+                        <li>Java, Python, C++, JavaScript and other programming languages</li>
+                    </ul>
+                    <li>Web Development, UI Design, Responsive Layouts</li>
+                    <ul>
+                        <li>HTML, CSS, and other web technologies</li>
+                    </ul>
+                    <li>Database Design and Management</li>
+
+                </ul>
+            </article>
+        </section>
+    </main>
+
+    <script>
+        const topnav = document.getElementById('topnav');
+        const hero = document.querySelector('.resume-hero');
+
+        window.addEventListener('scroll', () => {
+            const isScrolled = window.scrollY > 10;
+            if (isScrolled) {
+                topnav.classList.add('scrolled');
+                if (hero) hero.classList.add('scrolled');
+            } else {
+                topnav.classList.remove('scrolled');
+                if (hero) hero.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+
+</html>

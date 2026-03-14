@@ -1,0 +1,58 @@
+.resume-hero {
+    margin-top: 88px;
+    padding: 3rem 1rem;
+    text-align: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/EandB.jpg');
+    background-size: cover;
+    color: white;
+}
+
+.resume-hero h1 {
+    color: white;
+    letter-spacing: 2px;
+    padding: 2px;
+    margin: 0;
+    font-size: clamp(2rem, 10vw, 6rem);
+    transition: font-size .35s ease;
+    font-weight: 100;
+}
+
+.resume-hero p {
+    color: white;
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    margin-top: 0.5rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.resume-shell {
+    width: min(95%, var(--max));
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 1.2rem;
+}
+
+.resume-section {
+    margin: 1.2rem 0;
+    background: white;
+    border: 1px solid #e6e6e6;
+    border-radius: 12px;
+    padding: 1.5rem 1rem;
+    box-shadow: var(--shadow);
+
+}
+
+.resume-section h2 {
+    margin: .5em 0 1rem;
+
+}
+
+.resume-list {
+    margin: 0;
+    padding-left: 1.2rem;
+}
+
+.resume-list li {
+    margin-bottom: 0.45rem;
+    line-height: 2;
+}

@@ -1,0 +1,40 @@
+.section h1 { margin-bottom: .2rem; }
+
+.projects-tabs {
+    margin-top: 2rem;
+    background: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+}
+
+.tablist {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tab-button {
+    border: 1px solid var(--border);
+    background: #f9f9f9;
+    color: #2a2a2a;
+    padding: .45rem .85rem;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s ease, border-color .2s ease;
+}
+
+.tab-button:hover { border-color: #999; background: #fff; }
+.tab-button.active {
+    background: #2f2f2f;
+    color: white;
+    border-color: #2f2f2f;
+}
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.tab-panel h2 { margin-top: 0; margin-bottom: .35rem; }

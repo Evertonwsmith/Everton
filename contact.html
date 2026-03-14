@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Everton | Contact</title>
+    <link rel="stylesheet" href="src/theme.css" />
+    <style>
+        .site-shell {
+            width: min(95%, var(--max));
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 8rem 1rem 2rem;
+        }
+
+        .contact-section {
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-methods {
+            display: grid;
+            gap: .8rem;
+            margin-top: .8rem;
+        }
+
+        .contact-card {
+            background: #fafafa;
+            border: 1px solid #e8e8e8;
+            border-radius: 10px;
+            padding: .9rem .95rem;
+        }
+
+        .contact-card h3 {
+            margin: 0 0 .25rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="topnav" id="topnav">
+        <div class="topnav-inner">
+            <div class="navlinks" id="navlinks">
+                <a href="index.html">Home</a>
+                <a href="resume.html">Resume</a>
+                <a href="projects.html">Projects</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="site-shell">
+        <section class="contact-section">
+            <h1>Contact</h1>
+            <p>Reach out via any of the methods below.</p>
+            <div class="contact-methods">
+                <div class="contact-card">
+                    <h3>Email</h3>
+                    <p><a href="mailto:evertonwsmith@gmail.com">evertonsmith.elec@gmail.com</a></p>
+                </div>
+                <div class="contact-card">
+                    <h3>LinkedIn</h3>
+                    <p><a href="https://www.linkedin.com/in/evertonwsmith"
+                            target="_blank">linkedin.com/in/evertonwsmith</a></p>
+                </div>
+                <div class="contact-card">
+                    <h3>GitHub</h3>
+                    <p><a href="https://github.com/Evertonwsmith" target="_blank">github.com/Evertonwsmith</a></p>
+                </div>
+                <div class="contact-card">
+                    <h3>Phone</h3>
+                    <p>+1 (***) ***-****</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const topnav = document.getElementById('topnav');
+        window.addEventListener('scroll', () => topnav.classList.toggle('scrolled', window.scrollY > 10));
+    </script>
+</body>
+
+</html>
