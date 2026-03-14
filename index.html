@@ -1,87 +1,115 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Everton Smith</title>
-    <link rel="stylesheet" href="assets/styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Everton | About</title>
+    <link rel="stylesheet" href="src/theme.css" />
 </head>
+
 <body>
-    <!-- Header with Navigation -->
-    <header>
-        <div class="header-container">
-            <div class="logo-section">
-                <div class="site-name">Everton Smith</div>
+    <header class="topnav" id="topnav">
+        <div class="topnav-inner">
+            <div class="navlinks" id="navlinks">
+                <a href="index.html">Home</a>
+                <a href="index.html">Resume</a>
+                <a href="index.html">Projects</a>
+                <a href="index.html">Contact</a>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Hero Section -->
-        <section class="hero" id="home">
-            <h1>Hello, I'm Everton Smith</h1>
-            <p>B.Sc. in Computer Science, UBCO Kelowna</p><p>Electrical Engineering Technology Student at SAIT</p>
+
+    <main class="site-shell">
+        <section class="hero">
+            <h1>Everton Smith</h1>
+            <p>Software Engineer | Electrical Engineering Student | Tech Enthusiast</p>
         </section>
 
-        <!-- About Section -->
-        <section id="about">
-            <h2>About Me</h2>
-            <p>I grew up in Kelowna, British Columbia, 
-                and have always been passionate about technology, mathematics and problem solving. After obtaining my B.Sc. in Computer Science from UBCO Kelowna,
-                I worked as a Software Developer for nearly 6 years. Now, I have decided to further my education by pursuing a diploma
-                in Electrical Engineering Technology at SAIT, and am currenly in my first semester.
-            </p>
-        </section>
+        <section class="section-dbl" id="about">
+            <div class="section-dbl-inner">
+                <h2>About Myself,</h2>
+                <p>
+                    I am an Electrical Engineering Technology student with a six-year professional background in
+                    software development.
+                </p>
+                <p>My passion lies in bridging the gap between complex software logic and
+                    physical electrical systems. </p>
+            </div>
+            <div class="section-dbl-inner" id="profilePic">
+                <img src="assets/profilePic.jpg" alt="Profile Photo" />
 
-        <!-- Facts Section -->
-        <section id="facts">
-            <h2>Key Facts</h2>
-            <div class="facts-grid">
-                <div class="fact-card">
-                    <div>B.Sc. in Computer Science, University of British Columbia Okanagan</div>
-                </div>
-                <div class="fact-card">
-                    <div>Electrical Engineering Technology Student at Southern Alberta Institute of Technology</div>
-                </div>
-                
-                <div class="fact-card">
-                    <div>Music Awards: (Ensemble - Guitar)
-                        - 2 time winner of B.C. Interior Jazz Festival
-                        - 2013 Musicfest Nationals Gold Standard Award Winner
-                    </div>
-                </div>
-                <div class="fact-card">
-                    <div>Other interests: Golf, Snowboarding, Hockey, Board Games and Video Games!</div>
-                </div>
             </div>
         </section>
 
-        <!-- Projects Section -->
-        <section id="Experience">
-            <h2>Experience</h2>
-                <p><b>Software Developer</b> - Ultimate Kronos Group, Kelowna, BC
-                    <i>(2019-2025)</i><br><br></p>
-            <h3>Other</h3>
-                <p><b>Barista</b> - Good Earth, Calgary, AB <i>(2026)</i></p>
-                <p><b>Golf Shop Assistant</b> - SLGC, West Kelowna, BC <i>(2014-2019)</i></p>
-                <p><b>Bartender</b> - Neighbour's Pub, West Kelowna, BC <i>(2016-2019)</i></p>
-                <p><b>Barista</b> - Starbucks, West Kelowna, BC <i>(2020-2023)</i></p>
-        </section>
+        <!-- <section class="section" id="timeline">
+            <div class="timelineRow">
+                <div class="year">
+                    2026
+                </div>
+                <div class="timelineItem">
+                    Electrical Engineering Technology Student at SAIT
+                </div>
+
+            </div>
+            <br><br>
+            <div class="timelineRow">
+                <div class="year" id="second">
+                    <p>2025</p>
+                    <p>.</p>
+                    <p>.</p>
+                    <p>2019</p>
+                </div>
+                <div class="timelineItem">
+                    Software Developer at Ultimate Kronos Group
+                </div>
+
+            </div>
+
+            <br><br>
+            <div class="timelineRow">
+                <div class="year" id="third">
+                    <p>2019</p>
+                    <p>.</p>
+                    <p>.</p>
+                    <p>2014</p>
+                </div>
+                <div class="timelineItem">
+                    Bachelor of Science in Computer Science at University of British Columbia Okanagan
+                </div>
+
+            </div>
+            <br><br>
+
+              <div class="timelineRow">
+                <div class="year" id="fourth">
+                    <p>2013</p>
+                </div>
+                <div class="timelineItem">
+                    Graduated from Mount Boucherie Secondary School - Honours Student, Dean's List
+                </div>
+
+            </div>
+        </section> -->
+
     </main>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <p>&copy; 2026 Everton Smith. All rights reserved.</p>
-        <p></p>
-    </footer>
+    <script>
+        const topnav = document.getElementById('topnav');
+        const hero = document.querySelector('.hero');
+
+        window.addEventListener('scroll', () => {
+            const isScrolled = window.scrollY > 10;
+            if (isScrolled) {
+                topnav.classList.add('scrolled');
+                hero.classList.add('scrolled');
+            } else {
+                topnav.classList.remove('scrolled');
+                hero.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
+
 </html>
