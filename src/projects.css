@@ -1,40 +1,109 @@
-.section h1 { margin-bottom: .2rem; }
-
-.projects-tabs {
-    margin-top: 2rem;
-    background: #fff;
-    border: 1px solid #e6e6e6;
-    border-radius: 12px;
-    padding: 1rem;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+.site-shell {
+    margin-top: 78px;
 }
 
-.tablist {
+.site-shell h1 {
+    padding: 5%;
+}
+
+.list-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
-.tab-button {
-    border: 1px solid var(--border);
-    background: #f9f9f9;
-    color: #2a2a2a;
-    padding: .45rem .85rem;
-    border-radius: 10px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background .2s ease, border-color .2s ease;
+.project-card-resistor {
+    flex: 1 1 400px;
+    width: 400px;
+    height: 150px;
+    padding: 1em;
+    background-color: rgba(144, 238, 144, 0.394);
+    margin: 1em;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0s ease, color 0.2s ease;
+}
+.project-card-capacitor {
+    flex: 1 1 400px;
+    width: 400px;
+    height: 150px;
+    padding: 1em;
+    background-color: rgba(144, 238, 144, 0.394);
+    margin: 1em;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0s ease, color 0.2s ease;
 }
 
-.tab-button:hover { border-color: #999; background: #fff; }
-.tab-button.active {
-    background: #2f2f2f;
-    color: white;
-    border-color: #2f2f2f;
+.project-card-resistor::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
 }
 
-.tab-panel { display: none; }
-.tab-panel.active { display: block; }
+.project-card-resistor:hover {
+    background-color: transparent;
+    background-image: url("../assets/resistor.png");
+    background-size: cover;
+    background-position: center;
+    color: #000;
+}
 
-.tab-panel h2 { margin-top: 0; margin-bottom: .35rem; }
+.project-card-resistor:hover::after {
+    opacity: 0.5;
+}
+.project-card-resistor::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.project-card-resistor:hover {
+    background-color: transparent;
+    background-image: url("../assets/resistor.png");
+    background-size: cover;
+    background-position: center;
+    color: #000;
+}
+
+.project-card-resistor:hover::after {
+    opacity: 0.5;
+}
+
+.project-card-capacitor::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.project-card-capacitor:hover {
+    background-color: transparent;
+    background-image: url("../assets/capacitor.png");
+    background-size: cover;
+    background-position: center;
+    color: #000;
+}
+
+.project-card-capacitor:hover::after {
+    opacity: 0.5;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}

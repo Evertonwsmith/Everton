@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resistor Translator</title>
+    <link rel="stylesheet" href="../src/resistor.css" />
+    <link rel="stylesheet" href="../src/theme.css" />
+</head>
+
+<body>
+    <header>
+        <a href="../projects.html">
+            <div class="back-button">
+                Back to Projects
+            </div>
+        </a>
+    </header>
+    <main>
+        <div class="title">
+            <h1>Resistor Translator</h1>
+        </div>
+        <div class="colour-select">
+            <div class="colour-row" id="colour-row">
+                <div class="colour-option" id="black" data-band="black"></div>
+                <div class="colour-option" id="brown" data-band="brown"></div>
+                <div class="colour-option" id="red" data-band="red"></div>
+                <div class="colour-option" id="orange" data-band="orange"></div>
+                <div class="colour-option" id="yellow" data-band="yellow"></div>
+                <div class="colour-option" id="green" data-band="green"></div>
+                <div class="colour-option" id="blue" data-band="blue"></div>
+                <div class="colour-option" id="violet" data-band="violet"></div>
+                <div class="colour-option" id="grey" data-band="grey"></div>
+                <div class="colour-option" id="white" data-band="white"></div>
+                <div class="colour-option hidden" id="gold" data-band="gold"></div>
+                <div class="colour-option hidden" id="silver" data-band="silver"></div>
+            </div>
+            <p id="status-text">Click on the colour bands to select the resistor's colours.</p>
+        </div>
+        <div class="resistor-display">
+            <div class="resistor">
+                <div class="band" id="band1"></div>
+                <div class="band" id="band2"></div>
+                <div class="band" id="band3"></div>
+                <div class="band" id="band4"></div>
+            </div>
+
+        </div>
+        <div class="resistor-meta">
+            <p id="resistance-value">Resistance: 0 Ω</p>
+            <button id="reset-btn" type="button">Reset</button>
+        </div>
+    </main>
+
+    <script>
+        const colourOptions = document.querySelectorAll('.colour-option');
+        const bands = document.querySelectorAll('.band');
+        const resistanceValue = document.getElementById('resistance-value');
+        const statusText = document.getElementById('status-text');
+        const resetBtn = document.getElementById('reset-btn');
+
+        const digitMap = {
+            black: 0,
+            brown: 1,
+            red: 2,
+            orange: 3,
+            yellow: 4,
+            green: 5,
+            blue: 6,
+            violet: 7,
+            grey: 8,
+            white: 9,
+        };
+
+        const multiplierMap = {
+            black: 1,
+            brown: 10,
+            red: 100,
+            orange: 1000,
+            yellow: 10000,
+            green: 100000,
+            blue: 1000000,
+            violet: 10000000,
+            grey: 100000000,
+            white: 1000000000,
+            gold: 0.1,
+            silver: 0.01,
+        };
+
+        const toleranceMap = {
+            gold: '±5%',
+            silver: '±10%',
+        };
+
+        let selectedBands = [];
+
+        function updateColourOptions() {
+            const band4Mode = selectedBands.length === 3;
+            colourOptions.forEach((option) => {
+                if (band4Mode) {
+                    if (option.dataset.band === 'gold' || option.dataset.band === 'silver') {
+                        option.classList.remove('hidden');
+                        option.classList.remove('disabled');
+                    } else {
+                        option.classList.add('hidden');
+                    }
+                } else {
+                    if (option.dataset.band === 'gold' || option.dataset.band === 'silver') {
+                        option.classList.add('hidden');
+                    } else {
+                        option.classList.remove('hidden');
+                        option.classList.remove('disabled');
+                    }
+                }
+            });
+        }
+
+        function resetResistor() {
+            selectedBands = [];
+            bands.forEach((band) => {
+                band.style.backgroundColor = 'transparent';
+                band.style.border = '1px solid #bbb';
+            });
+            resistanceValue.textContent = 'Resistance: 0 Ω';
+            statusText.textContent = "Select band 1 colour.";
+            updateColourOptions();
+        }
+
+        function formatResistance(value) {
+            if (value >= 1e9) return `${(value / 1e9).toFixed(2).replace(/\.00$/, '')} GΩ`;
+            if (value >= 1e6) return `${(value / 1e6).toFixed(2).replace(/\.00$/, '')} MΩ`;
+            if (value >= 1e3) return `${(value / 1e3).toFixed(2).replace(/\.00$/, '')} kΩ`;
+            return `${+value.toFixed(2)} Ω`;
+        }
+
+        function computeResistance() {
+            if (selectedBands.length < 3) {
+                resistanceValue.textContent = 'Resistance: 0 Ω';
+                return;
+            }
+            const [b1, b2, b3, b4] = selectedBands;
+            const digits = digitMap[b1] * 10 + digitMap[b2];
+            const multiplier = multiplierMap[b3];
+            if (digits == null || multiplier == null) {
+                return;
+            }
+            const ohms = digits * multiplier;
+            const tol = toleranceMap[b4] || '';
+            resistanceValue.textContent = `Resistance: ${formatResistance(ohms)} ${tol}`.trim();
+        }
+
+        function onColourPicked(colour) {
+            if (selectedBands.length >= 4) return;
+            if (selectedBands.length === 3 && !(colour === 'gold' || colour === 'silver')) return;
+            if (selectedBands.length < 3 && (colour === 'gold' || colour === 'silver')) return;
+
+            selectedBands.push(colour);
+            const band = bands[selectedBands.length - 1];
+            band.style.backgroundColor = colour;
+            band.style.border = 'none';
+
+            if (selectedBands.length === 4) {
+                statusText.textContent = 'Complete: resistance calculated below.';
+            } else {
+                statusText.textContent = `Select band ${selectedBands.length + 1} colour.`;
+            }
+            updateColourOptions();
+            computeResistance();
+        }
+
+        colourOptions.forEach((option) => {
+            option.addEventListener('click', () => {
+                if (option.classList.contains('hidden') || option.classList.contains('disabled')) return;
+                onColourPicked(option.dataset.band);
+            });
+        });
+
+        resetBtn.addEventListener('click', resetResistor);
+        resetResistor();
+    </script>
+
+</html>

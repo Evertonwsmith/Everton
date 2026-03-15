@@ -1,0 +1,191 @@
+body {
+    background-color: rgba(0, 63, 21, 0.39);
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: right;
+
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.back-button {
+    width: 200px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 63, 21, 0.373);
+    border-radius: 5px;
+    margin: 1em;
+}
+
+.back-button:hover {
+    background-color: rgba(0, 63, 21, 0.5);
+}
+
+.title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.title h1 {
+    font-weight: 100;
+    font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.colour-select {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2em;
+}
+
+.colour-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
+.colour-option {
+    width: 50px;
+    height: 50px;
+    margin: 0 0.5em;
+    border-radius: 50%;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+#black {
+    background-color: black;
+}
+
+#brown {
+    background-color: brown;
+}
+
+#red {
+    background-color: red;
+}
+
+#orange {
+    background-color: orange;
+}
+
+#yellow {
+    background-color: yellow;
+}
+
+#green {
+    background-color: green;
+}
+
+#blue {
+    background-color: blue;
+}
+
+#violet {
+    background-color: violet;
+}
+
+#grey {
+    background-color: grey;
+}
+
+#white {
+    background-color: white;
+}
+
+#gold {
+    background-color: gold;
+    border: 1px solid #b8860b;
+}
+
+#silver {
+    background-color: silver;
+    border: 1px solid #8f8f8f;
+}
+
+.hidden {
+    visibility: hidden;
+    width: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.resistor-display {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+}
+
+.resistor {
+    width: 500px;
+    height: 150px;
+    background-color: beige;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.band {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+}
+
+#band1,
+#band2,
+#band3 {
+    width: 50px;
+    height: 150px;
+    margin: 0 0.5em;
+    border-radius: 5px;
+    border: 1px solid #bbb;
+    background-color: transparent;
+}
+
+#band4 {
+    width: 30px;
+    height: 150px;
+    margin: 0 0.5em;
+    border-radius: 5px;
+    border: 1px solid #bbb;
+    background-color: transparent;
+}
+
+.resistor-meta {
+    margin-top: 1em;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    justify-content: center;
+}
+
+#reset-btn {
+    border: none;
+    padding: 0.4em 0.9em;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    background: #2d6f48;
+    color: white;
+}
+
+.colour-option:hover {
+    transform: scale(1.1);
+}

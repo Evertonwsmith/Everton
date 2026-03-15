@@ -22,58 +22,25 @@
     </header>
 
     <main class="site-shell">
-        <section class="section">
-            <h1>Projects</h1>
-        </section>
+        <h1>Mini Projects</h1>
+        <div class="list-container">
+            <a href="projects/resistor.html">
+                <div class="project-card-resistor">
+                    <h2>Resistor Translator</h2>
+                    <p>Interactive Transistor Color to Ohms Converter</p>
+                </div>
+            </a>
+            <a href="projects/capacitor.html">
+                <div class="project-card-capacitor">
+                    <h2>Capacitor Chart</h2>
+                    <p>Transient state representation tool</p>
+                </div>
+            </a>
+        </div>
 
-        <section class="section projects-tabs">
-            <div class="tablist">
-                <button class="tab-button active" data-tab="web">Web</button>
-                <button class="tab-button" data-tab="embedded">Electrical</button>
-                <button class="tab-button" data-tab="ai">AI</button>
-                <button class="tab-button" data-tab="systems">Systems</button>
-            </div>
-
-            <div class="tab-panels">
-                <div class="tab-panel active" id="web">
-                    <h2>Web Projects</h2>
-                    <p>Coming soon..</p>
-                </div>
-                <div class="tab-panel" id="embedded">
-                    <h2>Electrical Projects</h2>
-                    <p>Coming soon..</p>
-                </div>
-                <div class="tab-panel" id="ai">
-                    <h2>AI Projects</h2>
-                    <p>Coming soon..</p>
-                </div>
-                <div class="tab-panel" id="systems">
-                    <h2>Systems Projects</h2>
-                    <p>Coming soon..</p>
-                </div>
-            </div>
-        </section>
     </main>
 
     <script>
-        const buttons = document.querySelectorAll('.tab-button');
-        const panels = document.querySelectorAll('.tab-panel');
-
-        buttons.forEach(button => {
-            button.addEventListener('click', () => {
-                const target = button.dataset.tab;
-                buttons.forEach(b => b.classList.remove('active'));
-                panels.forEach(panel => panel.classList.remove('active'));
-                button.classList.add('active');
-                document.getElementById(target).classList.add('active');
-            });
-        });
-
-        const topnav = document.getElementById('topnav');
-        window.addEventListener('scroll', () => {
-            const isScrolled = window.scrollY > 10;
-            topnav.classList.toggle('scrolled', isScrolled);
-        });
     </script>
 </body>
 
