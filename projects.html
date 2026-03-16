@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,7 +7,6 @@
     <link rel="stylesheet" href="src/theme.css" />
     <link rel="stylesheet" href="src/projects.css" />
 </head>
-
 <body>
     <header class="topnav" id="topnav">
         <div class="topnav-inner">
@@ -22,32 +20,35 @@
     </header>
 
     <main class="site-shell">
-        <h1>Mini Projects</h1>
-        <div class="list-container">
-            <a href="projects/resistor.html">
-                <div class="project-card-resistor">
+        <section class="hero-section">
+            <h1>My Projects</h1>
+            <p>Interactive tools and applications showcasing my skills in software development and electrical engineering.</p>
+        </section>
+
+        <section class="mini-projects">
+            <h2>Mini Projects</h2>
+            <div class="list-container">
+                <a href="projects/resistor.html" class="project-card project-card-resistor" aria-label="Resistor Translator - Interactive Transistor Color to Ohms Converter">
                     <h2>Resistor Translator</h2>
                     <p>Interactive Transistor Color to Ohms Converter</p>
-                </div>
-            </a>
-            <a href="projects/capacitor.html">
-                <div class="project-card-capacitor">
+                </a>
+                <a href="projects/capacitor.html" class="project-card project-card-capacitor" aria-label="Capacitor Chart - Transient state representation tool">
                     <h2>Capacitor Chart</h2>
                     <p>Transient state representation tool</p>
-                </div>
-            </a>
-            <!-- <a href="projects/logics.html">
-                <div class="project-card-logics">
+                </a>
+                <a href="projects/logics.html" class="project-card project-card-logics" aria-label="Logic Gates - Interactive logic gate simulation">
                     <h2>Logic Gates</h2>
                     <p>Interactive logic gate simulation</p>
-                </div>
-            </a> -->
-        </div>
-
+                </a>
+            </div>
+        </section>
     </main>
 
     <script>
+        const topnav = document.getElementById('topnav');
+        window.addEventListener('scroll', () => {
+            topnav.classList.toggle('scrolled', window.scrollY > 10);
+        });
     </script>
 </body>
-
 </html>

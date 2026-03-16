@@ -1,137 +1,540 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logic Gates</title>
-    <link rel="stylesheet" href="../src/theme.css">
-    <link rel="stylesheet" href="../src/logics.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Logic Gates Visualizer | Everton</title>
+    <link rel="stylesheet" href="../src/theme.css" />
+    <link rel="stylesheet" href="../src/projects.css" />
+    <style>
+        /* Logic Gates Specific Styles */
+        .logic-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .gate-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .gate-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--border);
+            background: var(--panel);
+            color: var(--muted);
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+
+        .gate-btn:hover {
+            border-color: var(--primary);
+            color: var(--text);
+            transform: translateY(-2px);
+        }
+
+        .gate-btn.active {
+            background: linear-gradient(135deg, var(--primary), #3b82f6);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .visualization-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            align-items: start;
+        }
+
+        .circuit-board {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .circuit-title {
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: var(--panel);
+            padding: 0 10px;
+            font-weight: 700;
+            color: var(--muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .gate-diagram {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .input-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .input-label {
+            font-weight: 600;
+            color: var(--muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 34px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .gate-symbol {
+            font-size: 4rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-align: center;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .output-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .lightbulb {
+            width: 60px;
+            height: 80px;
+            background: linear-gradient(180deg, #fff 0%, #f3f4f6 100%);
+            border: 2px solid #94a3b8;
+            border-radius: 50% 50% 20% 20%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .lightbulb::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: #94a3b8;
+            border-radius: 50%;
+        }
+
+        .lightbulb.on {
+            background: linear-gradient(180deg, #fff 0%, #fff7e6 100%);
+            border-color: var(--warning);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5), 0 4px 6px rgba(0,0,0,0.1);
+            animation: pulse 2s infinite;
+        }
+
+        .lightbulb.on::after {
+            background: var(--warning);
+            box-shadow: 0 0 15px var(--warning);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.5), 0 4px 6px rgba(0,0,0,0.1); }
+            50% { box-shadow: 0 0 30px rgba(245, 158, 11, 0.8), 0 4px 6px rgba(0,0,0,0.1); }
+            100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.5), 0 4px 6px rgba(0,0,0,0.1); }
+        }
+
+        .output-label {
+            font-weight: 600;
+            color: var(--muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .truth-table {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border);
+            font-weight: 600;
+        }
+
+        th {
+            background: rgba(37, 99, 235, 0.08);
+            color: var(--primary);
+            position: sticky;
+            top: 0;
+        }
+
+        td.active {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+        }
+
+        .gate-description {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .gate-description h3 {
+            margin: 0 0 1rem 0;
+            color: var(--accent);
+        }
+
+        .gate-description p {
+            margin: 0.5rem 0;
+            color: var(--muted);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .visualization-area {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .gate-diagram {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .gate-symbol {
+                font-size: 3rem;
+            }
+
+            .lightbulb {
+                width: 50px;
+                height: 70px;
+            }
+
+            .lightbulb::after {
+                width: 16px;
+                height: 16px;
+                top: -16px;
+            }
+
+            .toggle-switch {
+                width: 50px;
+                height: 28px;
+            }
+
+            .slider:before {
+                height: 22px;
+                width: 22px;
+                left: 3px;
+                bottom: 3px;
+            }
+
+            input:checked + .slider:before {
+                transform: translateX(22px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gate-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+                min-width: 100px;
+            }
+
+            .logic-container {
+                padding: 1rem;
+            }
+
+            .circuit-board {
+                padding: 1.5rem;
+            }
+
+            .gate-symbol {
+                font-size: 2.5rem;
+            }
+
+            .lightbulb {
+                width: 45px;
+                height: 65px;
+            }
+
+            .lightbulb::after {
+                width: 14px;
+                height: 14px;
+                top: -14px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <header>
-        <h1>Logic Gates</h1>
-        <a href="../projects.html">Back</a>
-
+    <header class="topnav" id="topnav">
+        <div class="topnav-inner">
+            <div class="navlinks" id="navlinks">
+                <a href="../index.html">Home</a>
+                <a href="../resume.html">Resume</a>
+                <a href="../projects.html">Projects</a>
+                <a href="../contact.html">Contact</a>
+            </div>
+        </div>
     </header>
-    <div class="sec-one">
-        <p>This is a display of basic logic gate functionality.</p>
-        <p>Select which gate to display, and operate the switches to observe logic behavior.</p>
-    </div>
-    <div class="sec-two">
 
-        <div class="gates">
-            <button id="and">AND</button>
-            <button id="or">OR</button>
-            <button id="nand">NAND</button>
-            <button id="nor">NOR</button>
-            <!-- <button id="xor">XOR</button> -->
-            <button id="not">NOT</button>
-            <!-- <button id="xnor">XNOR</button> -->
+    <main class="site-shell">
+        <section class="hero-section">
+            <h1>Logic Gates Visualizer</h1>
+            <p>Interactive demonstration of basic logic gates with 2 inputs and 1 output</p>
+        </section>
+
+        <div class="logic-container">
+            <div class="gate-selector" id="gateSelector">
+                <button class="gate-btn active" data-gate="AND">AND</button>
+                <button class="gate-btn" data-gate="OR">OR</button>
+                <button class="gate-btn" data-gate="NOT">NOT</button>
+                <button class="gate-btn" data-gate="NAND">NAND</button>
+                <button class="gate-btn" data-gate="NOR">NOR</button>
+                <button class="gate-btn" data-gate="XOR">XOR</button>
+                <button class="gate-btn" data-gate="XNOR">XNOR</button>
+            </div>
+
+            <div class="gate-description" id="gateDescription">
+                <h3>AND Gate</h3>
+                <p>Output is HIGH (1) only when both inputs are HIGH (1). Otherwise, output is LOW (0).</p>
+            </div>
+
+            <div class="visualization-area">
+                <div class="circuit-board">
+                    <div class="circuit-title">Interactive Circuit</div>
+                    <div class="gate-diagram">
+                        <div class="input-controls">
+                            <div class="input-label">Input A</div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="inputA">
+                                <span class="slider"></span>
+                            </label>
+                            
+                            <div class="input-label">Input B</div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="inputB">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="gate-symbol" id="gateSymbol">∧</div>
+
+                        <div class="output-area">
+                            <div class="output-label">Output</div>
+                            <div class="lightbulb" id="lightbulb">
+                                <span style="font-size: 1.5rem;">💡</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="truth-table">
+                    <h3 style="margin-top: 0; text-align: center; color: var(--accent);">Truth Table</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>A</th>
+                                <th>B</th>
+                                <th>Output</th>
+                            </tr>
+                        </thead>
+                        <tbody id="truthTableBody">
+                            <!-- Table content will be generated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        <span>
-            <h2>Gate: <span id="gateName">AND</span></h2>
-        </span>
-        <div class="display">
-            <div class="switches">
-                <div class="switch-row">
-                    <label id="switch1" class="switch-label">A</label>
-                </div>
-                <div class="switch-row">
-                    <label id="switch2" class="switch-label">B</label>
-                </div>
-            </div>
-            <div class="gate-selected">
-                <div class="Lin">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                </div>
-                <div class="gate">
-                    <div class="shape"></div>
-                    <div class="circle"></div>
-                </div>
-                <div class="Lout">
-                    <div class="line"></div>
-                </div>
-            </div>
-            <div class="output">
-                <div id="outputValue" class="bulb">0</div>
-            </div>
-        </div>
-    </div>
+    </main>
+
     <script>
-        const gateButtons = document.querySelectorAll('.gates button');
-        const switch1 = document.getElementById('switch1');
-        const switch2 = document.getElementById('switch2');
-        const outputValue = document.getElementById('outputValue');
-        const gateDisplay = document.querySelector('.gate');
-        const startingShape = document.querySelector('.shape');
-        const notCircle = document.querySelector('.circle');
-        notCircle.style.display = 'none';
-        startingShape.classList.add('and');
-
-        let selectedGate = 'and';
-        let switch1State = false;
-        let switch2State = false;
-
-        const gateLogic = {
-            and: (a, b) => a && b,
-            or: (a, b) => a || b,
-            nand: (a, b) => !(a && b),
-            nor: (a, b) => !(a || b),
-            xor: (a, b) => (a ? 1 : 0) ^ (b ? 1 : 0),
-            xnor: (a, b) => !((a ? 1 : 0) ^ (b ? 1 : 0)),
-            not: (a, b) => !a
+        // Logic gate implementations
+        const logicGates = {
+            AND: (a, b) => a && b,
+            OR: (a, b) => a || b,
+            NOT: (a, b) => !a, // NOT gate only uses input A
+            NAND: (a, b) => !(a && b),
+            NOR: (a, b) => !(a || b),
+            XOR: (a, b) => a !== b,
+            XNOR: (a, b) => a === b
         };
 
-        function updateSwitchStyles() {
-            switch1.classList.toggle('on', switch1State);
-            switch2.classList.toggle('on', switch2State);
-        }
+        // Gate symbols and descriptions
+        const gateInfo = {
+            AND: { symbol: '∧', desc: 'Output is HIGH (1) only when both inputs are HIGH (1). Otherwise, output is LOW (0).' },
+            OR: { symbol: '∨', desc: 'Output is HIGH (1) when at least one input is HIGH (1). Output is LOW (0) only when both inputs are LOW (0).' },
+            NOT: { symbol: '¬', desc: 'Output is the inverse of input A. B input is ignored. HIGH (1) becomes LOW (0) and vice versa.' },
+            NAND: { symbol: '⊼', desc: 'Output is LOW (0) only when both inputs are HIGH (1). Otherwise, output is HIGH (1). Opposite of AND.' },
+            NOR: { symbol: '⊽', desc: 'Output is HIGH (1) only when both inputs are LOW (0). Otherwise, output is LOW (0). Opposite of OR.' },
+            XOR: { symbol: '⊕', desc: 'Output is HIGH (1) when inputs are different. Output is LOW (0) when inputs are the same.' },
+            XNOR: { symbol: '⊙', desc: 'Output is HIGH (1) when inputs are the same. Output is LOW (0) when inputs are different. Opposite of XOR.' }
+        };
 
-        function updateGate() {
-            const a = switch1State;
-            const b = switch2State;
-            let result;
-            if (selectedGate === 'not') {
-                result = gateLogic.not(a, b);
-            } else {
-                result = gateLogic[selectedGate](a, b);
+        // DOM elements
+        const gateSelector = document.getElementById('gateSelector');
+        const gateSymbol = document.getElementById('gateSymbol');
+        const gateDescription = document.getElementById('gateDescription');
+        const inputA = document.getElementById('inputA');
+        const inputB = document.getElementById('inputB');
+        const lightbulb = document.getElementById('lightbulb');
+        const truthTableBody = document.getElementById('truthTableBody');
+
+        let currentGate = 'AND';
+
+        // Initialize
+        updateVisualization();
+
+        // Event listeners
+        gateSelector.addEventListener('click', (e) => {
+            if (e.target.classList.contains('gate-btn')) {
+                // Update active button
+                document.querySelectorAll('.gate-btn').forEach(btn => btn.classList.remove('active'));
+                e.target.classList.add('active');
+                
+                // Update current gate
+                currentGate = e.target.dataset.gate;
+                updateVisualization();
             }
-            outputValue.textContent = result ? '1' : '0';
-            updateSwitchStyles();
-        }
+        });
 
-        function setSelected(button) {
-            gateButtons.forEach(btn => btn.classList.remove('selected'));
-            button.classList.add('selected');
-            selectedGate = button.id;
-            document.getElementById('gateName').textContent = button.textContent;
-            startingShape.className = selectedGate;
-            if(selectedGate === 'not'||selectedGate === 'nand' || selectedGate === 'nor' || selectedGate === 'xnor') {
-                notCircle.style.display = 'block';
+        inputA.addEventListener('change', updateVisualization);
+        inputB.addEventListener('change', updateVisualization);
+
+        // Functions
+        function updateVisualization() {
+            const a = inputA.checked ? 1 : 0;
+            const b = inputB.checked ? 1 : 0;
+            
+            // Update gate symbol and description
+            gateSymbol.textContent = gateInfo[currentGate].symbol;
+            gateDescription.innerHTML = `<h3>${currentGate} Gate</h3><p>${gateInfo[currentGate].desc}</p>`;
+            
+            // Calculate output
+            const output = logicGates[currentGate](a, b);
+            
+            // Update lightbulb
+            if (output) {
+                lightbulb.classList.add('on');
             } else {
-                notCircle.style.display = 'none';
+                lightbulb.classList.remove('on');
             }
-            updateGate();
+            
+            // Update truth table
+            updateTruthTable(a, b);
         }
 
-        gateButtons.forEach(button => {
-            button.addEventListener('click', () => setSelected(button));
-        });
+        function updateTruthTable(currentA, currentB) {
+            const combinations = [
+                [0, 0], [0, 1], [1, 0], [1, 1]
+            ];
+            
+            truthTableBody.innerHTML = '';
+            
+            combinations.forEach(([a, b]) => {
+                const output = logicGates[currentGate](a, b);
+                const isActive = (a === currentA && b === currentB);
+                
+                const row = document.createElement('tr');
+                if (isActive) {
+                    row.style.background = 'rgba(37, 99, 235, 0.15)';
+                }
+                
+                row.innerHTML = `
+                    <td>${a}</td>
+                    <td>${b}</td>
+                    <td class="${output ? 'active' : ''}">${output}</td>
+                `;
+                
+                truthTableBody.appendChild(row);
+            });
+        }
 
-        switch1.addEventListener('click', () => {
-            switch1State = !switch1State;
-            updateGate();
+        // Smooth scrolling for navigation
+        const topnav = document.getElementById('topnav');
+        window.addEventListener('scroll', () => {
+            topnav.classList.toggle('scrolled', window.scrollY > 10);
         });
-        switch2.addEventListener('click', () => {
-            switch2State = !switch2State;
-            updateGate();
-        });
-
-        setSelected(document.getElementById('and'));
     </script>
 </body>
-
 </html>

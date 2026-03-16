@@ -1,125 +1,251 @@
 .site-shell {
-    margin-top: 78px;
+    margin-top: 70px;
+    padding: 2rem 1rem;
 }
 
 .site-shell h1 {
-    padding: 5%;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    color: var(--accent);
+    position: relative;
+}
+
+.site-shell h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), #3b82f6);
+    border-radius: 2px;
 }
 
 .list-container {
-    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.project-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    min-height: 200px;
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-evenly;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    border-color: rgba(148, 163, 184, 0.4);
+}
+
+.project-card:hover::before {
+    transform: scaleX(1);
+}
+
+.project-card h2 {
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    position: relative;
+    z-index: 2;
+}
+
+.project-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.6;
+    position: relative;
+    z-index: 2;
+}
+
+/* Resistor Card */
 .project-card-resistor {
-    flex: 1 1 400px;
-    /* width: 400px; */
-    height: 150px;
-    padding: 1em;
-    background-color: rgba(144, 238, 144, 0.394);
-    margin: 1em;
-    border-radius: 5px;
-    position: relative;
-    overflow: hidden;
-    transition: background-color 0s ease, color 0.2s ease;
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.08), rgba(37, 99, 235, 0.08));
+    border-left: 4px solid #10b981;
 }
 
+.project-card-resistor::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: url('../assets/resistor.png');
+    background-size: 120px;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    opacity: 0.1;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 1;
+}
+
+.project-card-resistor:hover::after {
+    opacity: 0.3;
+    transform: scale(1.1);
+}
+
+/* Capacitor Card */
 .project-card-capacitor {
-    flex: 1 1 400px;
-    /* width: 400px; */
-    height: 150px;
-    padding: 1em;
-    background-color: rgba(144, 238, 144, 0.394);
-    margin: 1em;
-    border-radius: 5px;
-    position: relative;
-    overflow: hidden;
-    transition: background-color 0s ease, color 0.2s ease;
-}
-
-.project-card-logics {
-    flex: 1 1 400px;
-    /* width: 400px; */
-    height: 150px;
-    padding: 1em;
-    background-color: rgba(144, 238, 144, 0.394);
-    margin: 1em;
-    border-radius: 5px;
-    position: relative;
-    overflow: hidden;
-    transition: background-color 0s ease, color 0.2s ease;
-}
-
-.project-card-resistor::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease;
-}
-
-.project-card-resistor:hover {
-    background-color: transparent;
-    background-image: url("../assets/resistor.png");
-    background-size: cover;
-    background-position: center;
-    color: #000;
-}
-
-.project-card-resistor:hover::after {
-    opacity: 0.5;
-}
-
-.project-card-resistor::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease;
-}
-
-.project-card-resistor:hover {
-    background-color: transparent;
-    background-image: url("../assets/resistor.png");
-    background-size: cover;
-    background-position: center;
-    color: #000;
-}
-
-.project-card-resistor:hover::after {
-    opacity: 0.5;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(16, 185, 129, 0.08));
+    border-left: 4px solid var(--primary);
 }
 
 .project-card-capacitor::after {
-    content: "";
+    content: '';
     position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease;
-}
-
-.project-card-capacitor:hover {
-    background-color: transparent;
-    background-image: url("../assets/capacitor.png");
-    background-size: cover;
-    background-position: center;
-    color: #000;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: url('../assets/capacitor.png');
+    background-size: 120px;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    opacity: 0.1;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 1;
 }
 
 .project-card-capacitor:hover::after {
-    opacity: 0.5;
+    opacity: 0.3;
+    transform: scale(1.1);
 }
 
-a {
-    text-decoration: none;
-    color: black;
+/* Logic Gates Card */
+.project-card-logics {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(239, 68, 68, 0.08));
+    border-left: 4px solid var(--warning);
+}
+
+.project-card-logics::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: url('../assets/logic-gates.png');
+    background-size: 120px;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    opacity: 0.1;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 1;
+}
+
+.project-card-logics:hover::after {
+    opacity: 0.3;
+    transform: scale(1.1);
+}
+
+/* Hidden Logic Gates Card */
+.project-card-logics.hidden {
+    display: none;
+}
+
+/* Mini Projects Section */
+h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Accessibility improvements */
+.project-card:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .list-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .project-card {
+        padding: 1.5rem;
+    }
+    
+    .project-card h2 {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-shell {
+        padding: 1.5rem 1rem 8rem;
+    }
+    
+    .hero-section {
+        padding: 2rem 1rem;
+    }
+    
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-section p {
+        font-size: 1.1rem;
+    }
+    
+    .mini-projects {
+        margin: 2rem 0;
+    }
+    
+    .mini-projects h2 {
+        font-size: 1.5rem;
+    }
+    
+    .list-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .project-card {
+        padding: 1.5rem;
+    }
+    
+    .project-card h2 {
+        font-size: 1.25rem;
+    }
+    
+    .project-card p {
+        font-size: 0.95rem;
+    }
 }

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,48 +7,50 @@
     <link rel="stylesheet" href="../src/resistor.css" />
     <link rel="stylesheet" href="../src/theme.css" />
 </head>
-
 <body>
     <header>
         <a href="../projects.html">
-            <div class="back-button">
-                Back to Projects
-            </div>
+            <button class="back-button" aria-label="Back to Projects">
+                ← Back to Projects
+            </button>
         </a>
     </header>
+    
     <main>
         <div class="title">
             <h1>Resistor Translator</h1>
         </div>
+        
         <div class="colour-select">
-            <div class="colour-row" id="colour-row">
-                <div class="colour-option" id="black" data-band="black"></div>
-                <div class="colour-option" id="brown" data-band="brown"></div>
-                <div class="colour-option" id="red" data-band="red"></div>
-                <div class="colour-option" id="orange" data-band="orange"></div>
-                <div class="colour-option" id="yellow" data-band="yellow"></div>
-                <div class="colour-option" id="green" data-band="green"></div>
-                <div class="colour-option" id="blue" data-band="blue"></div>
-                <div class="colour-option" id="violet" data-band="violet"></div>
-                <div class="colour-option" id="grey" data-band="grey"></div>
-                <div class="colour-option" id="white" data-band="white"></div>
-                <div class="colour-option hidden" id="gold" data-band="gold"></div>
-                <div class="colour-option hidden" id="silver" data-band="silver"></div>
+            <div class="colour-row" id="colour-row" role="group" aria-label="Resistor colour bands">
+                <div class="colour-option" id="black" data-band="black" role="button" aria-pressed="false" tabindex="0" aria-label="Black band"></div>
+                <div class="colour-option" id="brown" data-band="brown" role="button" aria-pressed="false" tabindex="0" aria-label="Brown band"></div>
+                <div class="colour-option" id="red" data-band="red" role="button" aria-pressed="false" tabindex="0" aria-label="Red band"></div>
+                <div class="colour-option" id="orange" data-band="orange" role="button" aria-pressed="false" tabindex="0" aria-label="Orange band"></div>
+                <div class="colour-option" id="yellow" data-band="yellow" role="button" aria-pressed="false" tabindex="0" aria-label="Yellow band"></div>
+                <div class="colour-option" id="green" data-band="green" role="button" aria-pressed="false" tabindex="0" aria-label="Green band"></div>
+                <div class="colour-option" id="blue" data-band="blue" role="button" aria-pressed="false" tabindex="0" aria-label="Blue band"></div>
+                <div class="colour-option" id="violet" data-band="violet" role="button" aria-pressed="false" tabindex="0" aria-label="Violet band"></div>
+                <div class="colour-option" id="grey" data-band="grey" role="button" aria-pressed="false" tabindex="0" aria-label="Grey band"></div>
+                <div class="colour-option" id="white" data-band="white" role="button" aria-pressed="false" tabindex="0" aria-label="White band"></div>
+                <div class="colour-option hidden" id="gold" data-band="gold" role="button" aria-pressed="false" tabindex="0" aria-label="Gold band"></div>
+                <div class="colour-option hidden" id="silver" data-band="silver" role="button" aria-pressed="false" tabindex="0" aria-label="Silver band"></div>
             </div>
-            <p id="status-text">Click on the colour bands to select the resistor's colours.</p>
+            <p id="status-text" class="status-text">Click on the colour bands to select the resistor's colours.</p>
         </div>
+        
         <div class="resistor-display">
-            <div class="resistor">
-                <div class="band" id="band1"></div>
-                <div class="band" id="band2"></div>
-                <div class="band" id="band3"></div>
-                <div class="band" id="band4"></div>
+            <div class="resistor" aria-label="Resistor visualization">
+                <div class="band" id="band1" aria-label="First band"></div>
+                <div class="band" id="band2" aria-label="Second band"></div>
+                <div class="band" id="band3" aria-label="Third band"></div>
+                <div class="band" id="band4" aria-label="Fourth band"></div>
             </div>
-
         </div>
+        
         <div class="resistor-meta">
-            <p id="resistance-value">Resistance: 0 Ω</p>
-            <button id="reset-btn" type="button">Reset</button>
+            <p id="resistance-value" class="resistance-value" aria-live="polite">Resistance: 0 Ω</p>
+            <button id="reset-btn" class="reset-btn" type="button" aria-label="Reset resistor selection">Reset</button>
         </div>
     </main>
 
@@ -102,15 +103,19 @@
                     if (option.dataset.band === 'gold' || option.dataset.band === 'silver') {
                         option.classList.remove('hidden');
                         option.classList.remove('disabled');
+                        option.setAttribute('aria-disabled', 'false');
                     } else {
                         option.classList.add('hidden');
+                        option.setAttribute('aria-disabled', 'true');
                     }
                 } else {
                     if (option.dataset.band === 'gold' || option.dataset.band === 'silver') {
                         option.classList.add('hidden');
+                        option.setAttribute('aria-disabled', 'true');
                     } else {
                         option.classList.remove('hidden');
                         option.classList.remove('disabled');
+                        option.setAttribute('aria-disabled', 'false');
                     }
                 }
             });
@@ -120,7 +125,7 @@
             selectedBands = [];
             bands.forEach((band) => {
                 band.style.backgroundColor = 'transparent';
-                band.style.border = '1px solid #bbb';
+                band.style.border = '2px solid #6b7280';
             });
             resistanceValue.textContent = 'Resistance: 0 Ω';
             statusText.textContent = "Select band 1 colour.";
@@ -174,10 +179,19 @@
                 if (option.classList.contains('hidden') || option.classList.contains('disabled')) return;
                 onColourPicked(option.dataset.band);
             });
+            
+            option.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    if (!option.classList.contains('hidden') && !option.classList.contains('disabled')) {
+                        onColourPicked(option.dataset.band);
+                    }
+                }
+            });
         });
 
         resetBtn.addEventListener('click', resetResistor);
         resetResistor();
     </script>
-
+</body>
 </html>

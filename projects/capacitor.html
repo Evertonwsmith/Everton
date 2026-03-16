@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,37 +7,46 @@
     <link rel="stylesheet" href="../src/capacitor.css" />
     <link rel="stylesheet" href="../src/theme.css" />
 </head>
-
 <body>
-     <header>
+    <header>
         <a href="../projects.html">
-            <div class="back-button">
-                Back to Projects
-            </div>
+            <button class="back-button" aria-label="Back to Projects">
+                ← Back to Projects
+            </button>
         </a>
     </header>
+    
     <main>
         <div class="title">
             <h1>Capacitor Charging</h1>
         </div>
+        
         <div class="content">
             <div class="card">
                 <h2>RC Charging Transient</h2>
                 <p>Enter resistor and capacitor values and plot the capacitor voltage over time.</p>
                 <div class="inputs">
-                    <label>Resistance (kΩ): <input id="resistance" type="number" value="10" min="0.1" step="0.1" /></label>
-                    <label>Capacitance (µF): <input id="capacitance" type="number" value="10" min="0.1" step="0.1" /></label>
-                    <label>Supply Voltage (V): <input id="voltage" type="number" value="5" min="0.1" step="0.1" /></label>
+                    <label for="resistance">Resistance (kΩ): 
+                        <input id="resistance" type="number" value="10" min="0.1" step="0.1" aria-label="Resistance value in kiloohms" />
+                    </label>
+                    <label for="capacitance">Capacitance (µF): 
+                        <input id="capacitance" type="number" value="10" min="0.1" step="0.1" aria-label="Capacitance value in microfarads" />
+                    </label>
+                    <label for="voltage">Supply Voltage (V): 
+                        <input id="voltage" type="number" value="5" min="0.1" step="0.1" aria-label="Supply voltage in volts" />
+                    </label>
                 </div>
-                <button id="plot-btn">Plot Charging Curve</button>
-                <p id="tau-value">Time constant τ = 0 ms</p>
+                <button id="plot-btn" aria-label="Plot charging curve">Plot Charging Curve</button>
+                <p id="tau-value" aria-live="polite">Time constant τ = 0 ms</p>
             </div>
+            
             <div class="chart-card">
-                <canvas id="charging-chart" width="580" height="300"></canvas>
+                <canvas id="charging-chart" width="580" height="350" role="img" aria-label="Capacitor charging curve chart"></canvas>
                 <p>Capacitor voltage across time during charging (0–5τ).</p>
             </div>
         </div>
     </main>
+
     <script>
         const resistanceInput = document.getElementById('resistance');
         const capacitanceInput = document.getElementById('capacitance');
@@ -63,8 +71,15 @@
             const tau = r * c;
             tauValue.textContent = `Time constant τ = ${formatNumber(tau * 1000, 3)} ms`;
 
-            const width = canvas.width;
-            const height = canvas.height;
+            // Responsive canvas sizing
+            const dpr = window.devicePixelRatio || 1;
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            ctx.scale(dpr, dpr);
+
+            const width = rect.width;
+            const height = rect.height;
             ctx.clearRect(0, 0, width, height);
 
             const padding = 45;
@@ -72,22 +87,38 @@
             const plotH = height - padding * 2;
             const tMax = tau * 5;
 
-            ctx.strokeStyle = '#e0e0e0';
+            // Draw grid lines
+            ctx.strokeStyle = '#e5e7eb';
             ctx.lineWidth = 1;
-            for (let i=0; i<=5; i++) {
+            for (let i = 0; i <= 5; i++) {
                 const y = padding + i * (plotH / 5);
-                ctx.beginPath(); ctx.moveTo(padding, y); ctx.lineTo(width - padding, y); ctx.stroke();
+                ctx.beginPath(); 
+                ctx.moveTo(padding, y); 
+                ctx.lineTo(width - padding, y); 
+                ctx.stroke();
             }
-            for (let i=0; i<=5; i++) {
+            for (let i = 0; i <= 5; i++) {
                 const x = padding + i * (plotW / 5);
-                ctx.beginPath(); ctx.moveTo(x, padding); ctx.lineTo(x, height - padding); ctx.stroke();
+                ctx.beginPath(); 
+                ctx.moveTo(x, padding); 
+                ctx.lineTo(x, height - padding); 
+                ctx.stroke();
             }
 
-            ctx.strokeStyle = '#333';
+            // Draw axes
+            ctx.strokeStyle = '#6b7280';
             ctx.lineWidth = 2;
             ctx.beginPath();
-            ctx.moveTo(padding, height - padding);
-            const steps = 120;
+            ctx.moveTo(padding, padding);
+            ctx.lineTo(padding, height - padding);
+            ctx.lineTo(width - padding, height - padding);
+            ctx.stroke();
+
+            // Draw charging curve
+            ctx.strokeStyle = '#2563eb';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            const steps = 200;
             for (let i = 0; i <= steps; i++) {
                 const t = (i / steps) * tMax;
                 const v = v0 * (1 - Math.exp(-t / tau));
@@ -98,26 +129,45 @@
             }
             ctx.stroke();
 
-            ctx.fillStyle = '#333';
-            ctx.font = '12px Arial';
-            ctx.fillText('0', padding - 10, height - padding + 15);
-            ctx.fillText('τ', padding + plotW / 5 - 6, height - padding + 15);
-            ctx.fillText('2τ', padding + (2 * plotW) / 5 - 12, height - padding + 15);
-            ctx.fillText('5τ', padding + plotW - 14, height - padding + 15);
+            // Draw labels
+            ctx.fillStyle = '#6b7280';
+            ctx.font = '12px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('0', padding, height - padding + 20);
+            ctx.fillText('τ', padding + plotW / 5, height - padding + 20);
+            ctx.fillText('2τ', padding + (2 * plotW) / 5, height - padding + 20);
+            ctx.fillText('5τ', padding + plotW, height - padding + 20);
 
-            ctx.fillText('0V', 5, height - padding);
-            ctx.fillText(v0.toFixed(1) + 'V', 5, padding+5);
+            ctx.textAlign = 'right';
+            ctx.fillText('0V', padding - 10, height - padding);
+            ctx.fillText(v0.toFixed(1) + 'V', padding - 10, padding);
 
-            ctx.strokeStyle = '#222';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(padding, padding);
-            ctx.lineTo(padding, height - padding);
-            ctx.lineTo(width - padding, height - padding);
-            ctx.stroke();
+            // Add title and axis labels
+            ctx.fillStyle = '#1f2937';
+            ctx.font = 'bold 14px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('Capacitor Voltage vs Time', width / 2, padding - 10);
+            
+            ctx.save();
+            ctx.translate(20, height / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.textAlign = 'center';
+            ctx.fillText('Voltage (V)', 0, 0);
+            ctx.restore();
+            
+            ctx.textAlign = 'center';
+            ctx.fillText('Time (s)', width / 2, height - 10);
         }
 
+        // Initial draw and event listeners
         plotBtn.addEventListener('click', drawChart);
+        [resistanceInput, capacitanceInput, voltageInput].forEach(input => {
+            input.addEventListener('input', drawChart);
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', drawChart);
+        
         drawChart();
     </script>
 </body>
