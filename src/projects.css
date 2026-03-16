@@ -7,6 +7,7 @@
 }
 
 .list-container {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -15,7 +16,7 @@
 
 .project-card-resistor {
     flex: 1 1 400px;
-    width: 400px;
+    /* width: 400px; */
     height: 150px;
     padding: 1em;
     background-color: rgba(144, 238, 144, 0.394);
@@ -25,9 +26,23 @@
     overflow: hidden;
     transition: background-color 0s ease, color 0.2s ease;
 }
+
 .project-card-capacitor {
     flex: 1 1 400px;
-    width: 400px;
+    /* width: 400px; */
+    height: 150px;
+    padding: 1em;
+    background-color: rgba(144, 238, 144, 0.394);
+    margin: 1em;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0s ease, color 0.2s ease;
+}
+
+.project-card-logics {
+    flex: 1 1 400px;
+    /* width: 400px; */
     height: 150px;
     padding: 1em;
     background-color: rgba(144, 238, 144, 0.394);
@@ -59,6 +74,7 @@
 .project-card-resistor:hover::after {
     opacity: 0.5;
 }
+
 .project-card-resistor::after {
     content: "";
     position: absolute;

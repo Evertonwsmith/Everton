@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logic Gates</title>
+    <link rel="stylesheet" href="../src/theme.css">
+    <link rel="stylesheet" href="../src/logics.css">
+</head>
+
+<body>
+    <header>
+        <h1>Logic Gates</h1>
+        <a href="../projects.html">Back</a>
+
+    </header>
+    <div class="sec-one">
+        <p>This is a display of basic logic gate functionality.</p>
+        <p>Select which gate to display, and operate the switches to observe logic behavior.</p>
+    </div>
+    <div class="sec-two">
+
+        <div class="gates">
+            <button id="and">AND</button>
+            <button id="or">OR</button>
+            <button id="nand">NAND</button>
+            <button id="nor">NOR</button>
+            <!-- <button id="xor">XOR</button> -->
+            <button id="not">NOT</button>
+            <!-- <button id="xnor">XNOR</button> -->
+        </div>
+        <span>
+            <h2>Gate: <span id="gateName">AND</span></h2>
+        </span>
+        <div class="display">
+            <div class="switches">
+                <div class="switch-row">
+                    <label id="switch1" class="switch-label">A</label>
+                </div>
+                <div class="switch-row">
+                    <label id="switch2" class="switch-label">B</label>
+                </div>
+            </div>
+            <div class="gate-selected">
+                <div class="Lin">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+                <div class="gate">
+                    <div class="shape"></div>
+                    <div class="circle"></div>
+                </div>
+                <div class="Lout">
+                    <div class="line"></div>
+                </div>
+            </div>
+            <div class="output">
+                <div id="outputValue" class="bulb">0</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const gateButtons = document.querySelectorAll('.gates button');
+        const switch1 = document.getElementById('switch1');
+        const switch2 = document.getElementById('switch2');
+        const outputValue = document.getElementById('outputValue');
+        const gateDisplay = document.querySelector('.gate');
+        const startingShape = document.querySelector('.shape');
+        const notCircle = document.querySelector('.circle');
+        notCircle.style.display = 'none';
+        startingShape.classList.add('and');
+
+        let selectedGate = 'and';
+        let switch1State = false;
+        let switch2State = false;
+
+        const gateLogic = {
+            and: (a, b) => a && b,
+            or: (a, b) => a || b,
+            nand: (a, b) => !(a && b),
+            nor: (a, b) => !(a || b),
+            xor: (a, b) => (a ? 1 : 0) ^ (b ? 1 : 0),
+            xnor: (a, b) => !((a ? 1 : 0) ^ (b ? 1 : 0)),
+            not: (a, b) => !a
+        };
+
+        function updateSwitchStyles() {
+            switch1.classList.toggle('on', switch1State);
+            switch2.classList.toggle('on', switch2State);
+        }
+
+        function updateGate() {
+            const a = switch1State;
+            const b = switch2State;
+            let result;
+            if (selectedGate === 'not') {
+                result = gateLogic.not(a, b);
+            } else {
+                result = gateLogic[selectedGate](a, b);
+            }
+            outputValue.textContent = result ? '1' : '0';
+            updateSwitchStyles();
+        }
+
+        function setSelected(button) {
+            gateButtons.forEach(btn => btn.classList.remove('selected'));
+            button.classList.add('selected');
+            selectedGate = button.id;
+            document.getElementById('gateName').textContent = button.textContent;
+            startingShape.className = selectedGate;
+            if(selectedGate === 'not'||selectedGate === 'nand' || selectedGate === 'nor' || selectedGate === 'xnor') {
+                notCircle.style.display = 'block';
+            } else {
+                notCircle.style.display = 'none';
+            }
+            updateGate();
+        }
+
+        gateButtons.forEach(button => {
+            button.addEventListener('click', () => setSelected(button));
+        });
+
+        switch1.addEventListener('click', () => {
+            switch1State = !switch1State;
+            updateGate();
+        });
+        switch2.addEventListener('click', () => {
+            switch2State = !switch2State;
+            updateGate();
+        });
+
+        setSelected(document.getElementById('and'));
+    </script>
+</body>
+
+</html>
