@@ -2,6 +2,9 @@
     margin-top: 70px;
     padding: 2rem 1rem;
 }
+a{
+    text-decoration: none;
+}
 
 .site-shell h1 {
     text-align: center;
@@ -47,7 +50,7 @@
     justify-content: space-between;
 }
 
-.project-card::before {
+/* .project-card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -55,6 +58,53 @@
     width: 100%;
     height: 4px;
     background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+} */
+
+.project-card-bl::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.project-card-gr::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, green, transparent);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.project-card-red::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, red, transparent);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+.project-card-or::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, orange, transparent);
     transform: scaleX(0);
     transition: transform 0.4s ease;
 }
@@ -168,6 +218,31 @@
     transform: scale(1.1);
 }
 
+.project-card-PM {
+    background: linear-gradient(135deg, rgba(235, 37, 37, 0.08), rgba(246, 59, 59, 0.08));
+    border-left: 4px solid #f63b3b;
+}
+
+.project-card-PM::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background-size: 120px;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    opacity: 0.1;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 1;
+}
+
+.project-card-PM:hover::after {
+    opacity: 0.3;
+    transform: scale(1.1);
+}
+
 /* Theremin Card */
 .project-card-theremin {
     background: linear-gradient(135deg, rgba(34, 197, 94, 0.08), rgba(22, 163, 74, 0.08));
@@ -251,11 +326,11 @@ h2 {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
-    
+
     .project-card {
         padding: 1.5rem;
     }
-    
+
     .project-card h2 {
         font-size: 1.25rem;
     }
@@ -265,40 +340,40 @@ h2 {
     .site-shell {
         padding: 1.5rem 1rem 8rem;
     }
-    
+
     .hero-section {
         padding: 2rem 1rem;
     }
-    
+
     .hero-section h1 {
         font-size: 2.5rem;
     }
-    
+
     .hero-section p {
         font-size: 1.1rem;
     }
-    
+
     .mini-projects {
         margin: 2rem 0;
     }
-    
+
     .mini-projects h2 {
         font-size: 1.5rem;
     }
-    
+
     .list-container {
         grid-template-columns: 1fr;
         gap: 1rem;
     }
-    
+
     .project-card {
         padding: 1.5rem;
     }
-    
+
     .project-card h2 {
         font-size: 1.25rem;
     }
-    
+
     .project-card p {
         font-size: 0.95rem;
     }

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Project Manager</title>
+    <link rel="stylesheet" href="projectManager.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Project Manager</h1>
+            <p class="subtitle">Organize your tasks efficiently</p>
+        </header>
+
+        <main class="main-content">
+            <section class="task-form-section">
+                <div class="card form-card">
+                    <h2>Add New Task</h2>
+                    <form id="taskForm" class="task-form">
+                        <div class="form-group">
+                            <label for="taskName">Task Name</label>
+                            <input type="text" id="taskName" name="taskName" placeholder="Enter task description" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="priority">Priority</label>
+                                <select id="priority" name="priority" required>
+                                    <option value="5">1 - Highest</option>
+                                    <option value="4">2 - High</option>
+                                    <option value="3">3 - Medium</option>
+                                    <option value="2">4 - Low</option>
+                                    <option value="1">5 - Lowest</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="dueDate">Due Date</label>
+                                <input type="date" id="dueDate" name="dueDate" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="estimatedTime">Estimated Time (days)</label>
+                                <input type="number" id="estimatedTime" name="estimatedTime" min="0.25" step="0.25" placeholder="0.5" required>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Add Task</button>
+                    </form>
+                </div>
+            </section>
+
+            <section class="task-list-section">
+                <div class="card list-card">
+                    <div class="card-header">
+                        <h2>Task List</h2>
+                        <div class="task-stats">
+                            <span class="stat-item">Total: <span id="totalTasks">0</span></span>
+                            <span class="stat-item">Active: <span id="activeTasks">0</span></span>
+                            <span class="stat-item">Completed: <span id="completedTasks">0</span></span>
+                        </div>
+                    </div>
+                    
+                    <div id="taskList" class="task-list">
+                        <!-- Tasks will be rendered here -->
+                    </div>
+                    
+                    <div id="emptyState" class="empty-state" style="display: none;">
+                        <div class="empty-icon">📋</div>
+                        <h3>No tasks yet</h3>
+                        <p>Add your first task using the form above to get started.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="projectManager.js"></script>
+</body>
+</html>
