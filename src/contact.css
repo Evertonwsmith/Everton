@@ -1,0 +1,158 @@
+        .site-shell {
+            width: min(95%, var(--max));
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .contact-hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            margin-top: 78px;
+        }
+
+        .contact-hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .contact-hero p {
+            font-size: 1.1rem;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        .contact-section {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), #3b82f6);
+            opacity: 1;
+        }
+
+        .contact-section:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            border-color: rgba(148, 163, 184, 0.4);
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), #3b82f6);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border-color: rgba(148, 163, 184, 0.4);
+        }
+
+        .contact-card:hover::before {
+            opacity: 1;
+        }
+
+        .contact-card h3 {
+            margin: 0 0 0.75rem 0;
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .contact-card h3::before {
+            content: '✉️';
+            font-size: 1.25rem;
+        }
+
+        .contact-card:nth-child(2) h3::before {
+            content: '🔗';
+        }
+
+        .contact-card:nth-child(3) h3::before {
+            content: '💻';
+        }
+
+        .contact-card:nth-child(4) h3::before {
+            content: '📞';
+        }
+
+        .contact-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .contact-card a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+        }
+
+        /* Accessibility improvements */
+        .contact-card:focus-within {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+            border-radius: 12px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .contact-methods {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .contact-section {
+                padding: 1.5rem;
+            }
+        }
