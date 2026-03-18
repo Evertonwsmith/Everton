@@ -1,8 +1,6 @@
 :root {
     --primary-color: #0f8519;
-    --primary-hover: #0d7016;
-    --primary-color2: blue;
-    --primary-hover2: #1e40af;
+    --primary-hover2: #0d7016;
     --secondary-color: #64748b;
     --text-color: #1e293b;
     --bg-color: #f8fafc;
@@ -14,6 +12,8 @@
 .blue{
     --primary-color: blue;
     --primary-hover: #1e40af;
+    --primary-color2: #0f8519;
+    --primary-hover2: #0d7016;
 }
 
 * {
@@ -30,7 +30,7 @@ body{
 
 header{
     height: 70px;
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    background: var(--primary-color);
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -175,7 +175,7 @@ header a:hover {
 .tinkercadLink{
     width: 100%;
     padding: 15px 20px;
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    background: var(--primary-color);
     color: white;
     text-align: center;
     text-decoration: none;
@@ -193,7 +193,7 @@ header a:hover {
 .tinkercadLink:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-hover);
-    background: linear-gradient(135deg, var(--primary-hover), #1e40af);
+    background: linear-gradient(180deg, var(--primary-color), #969696);
 }
 
 .tinkercadLink:active {
