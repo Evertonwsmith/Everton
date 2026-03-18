@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../src/report.css">
 </head>
 
-<body>
+<body class="blue">
     <header>
         <a href="../projects.html">Back to Projects</a>
     </header>
@@ -17,56 +17,69 @@
             <h1>Boolean Arduino Project</h1>
             <p>A simple Arduino project using button user input to answer multiple choice boolean algebra questions.</p>
         </div>
-        <div class="report-sec simulation">
-            <!-- <h2>Simulation</h2> -->
-            <a
-                href="https://www.tinkercad.com/things/2bUNRqS9FN4-trivia?sharecode=mQm1TOrS0dfiZms-TswxxG1CJVHEV9KaQx-uh86eyvs">
-                <div class="tinkercadLink">Link to Tinkercad Simulation</div>
-            </a>
-        </div>
-        <div class="report-sec">
-            <h2>Challenges</h2>
-            <p>
-                This project included multiple new challenges for myself
-            </p>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    C++ looping to wait for user input
+
+        <!-- Main two-column layout container -->
+        <div class="content-layout">
+            <!-- Left column for written content -->
+            <div class="left-column">
+                <div class="report-sec">
+                    <!-- <h2>Simulation</h2> -->
+                    <a
+                        href="https://www.tinkercad.com/things/2bUNRqS9FN4-trivia?sharecode=mQm1TOrS0dfiZms-TswxxG1CJVHEV9KaQx-uh86eyvs">
+                        <div class="tinkercadLink">Link to Tinkercad Simulation</div>
+                    </a>
                 </div>
-                <div class="skill-card">
-                    Programming the 16x2 LCD screen via Arduino
+                <div class="report-sec">
+                    <h2>Skills Applied</h2>
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <h3>Arduino/C++</h3>
+                            <p>Programming microcontroller logic and user interface</p>
+                        </div>
+                        <div class="skill-card">
+                            <h3>Boolean Logic</h3>
+                            <p>Implementing logical operations and truth table evaluation</p>
+                        </div>
+                        <div class="skill-card">
+                            <h3>Hardware Wiring</h3>
+                            <p>Connecting buttons, LCD screen, and other components</p>
+                        </div>
+                        <div class="skill-card">
+                            <h3>LCD Screen Coding</h3>
+                            <p>Displaying questions, answers, and user feedback</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="skill-card">
-                    Implementing boolean logic evaluation in code
+
+                <div class="report-sec">
+                    <h2>Challenges</h2>
+                    <p>
+                        This project included multiple new challenges for myself
+                    </p>
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <b>C++</b> looping to wait for user input
+                        </div>
+                        <div class="skill-card">
+                            Programming the 16x2 <b>LCD screen</b> via Arduino
+                        </div>
+                        <div class="skill-card">
+                            Implementing <b>boolean logic</b> evaluation in code
+                        </div>
+                        <div class="skill-card">
+                            <b>Game state</b> handling in Arduino/C++
+                        </div>
+                    </div>
                 </div>
-                <div class="skill-card">
-                    Game state handling in Arduino/C++
+
+            </div>
+
+            <!-- Right column for PDF -->
+            <div class="right-column">
+                <div class="pdf-container">
+                    <iframe src="../assets/Trivia.pdf" frameborder="0"></iframe>
                 </div>
             </div>
-        </div>
-        <div class="report-sec ">
-            <h2>Skills Applied</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h3>Arduino/C++</h3>
-                    <p>Programming microcontroller logic and user interface</p>
-                </div>
-                <div class="skill-card">
-                    <h3>Boolean Logic</h3>
-                    <p>Implementing logical operations and truth table evaluation</p>
-                </div>
-                <div class="skill-card">
-                    <h3>Hardware Wiring</h3>
-                    <p>Connecting buttons, LCD screen, and other components</p>
-                </div>
-                <div class="skill-card">
-                    <h3>LCD Screen Coding</h3>
-                    <p>Displaying questions, answers, and user feedback</p>
-                </div>
-            </div>
-        </div>
-        <div class="report-sec">
-            <iframe src="../assets/Trivia.pdf" frameborder="0"></iframe>
         </div>
     </div>
 </body>
