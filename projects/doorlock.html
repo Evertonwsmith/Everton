@@ -4,38 +4,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Doorlock Arduino Project</title>
+    <link rel="stylesheet" href="../src/report.css">
+    <link rel="stylesheet" href="../src/theme.css">
     <link rel="stylesheet" href="../src/doorlock.css">
 </head>
 
 <body>
     <header>
-        <a href="../projects.html">
-            <div class="back">Back</div>
-        </a>
+        <a href="../projects.html">Back to Projects</a>
     </header>
-    <main>
-        <div class="report tile">
-            <div class="title">
-                <h1>Arduino 4 Digit Doorlock</h1>
-            </div>
-            <div class="simulation tile">
-                <a href="https://www.tinkercad.com/things/bVVH9IGjNgr-4-digit-door-lock?sharecode=7aZoGCxQgF_apdiYNVk665b2JM3fjx_DzlMaCSXUGQ4"
-                    target="_blank">
-                    <h1>TinkerCAD Simulation</h1>
+    <div class="report">
+        <div class="title">
+            <h1>Arduino 4 Digit Doorlock</h1>
+            <p>A security prototype designed to simulate a digital deadbolt with programmable password mode, input
+                masking, and motorized locking mechanism.</p>
+        </div>
+
+        <!-- Main two-column layout container -->
+        <div class="content-layout">
+            <!-- Left column for written content -->
+            <div class="report-sec-link">
+                <a
+                    href="https://www.tinkercad.com/things/bVVH9IGjNgr-4-digit-door-lock?sharecode=7aZoGCxQgF_apdiYNVk665b2JM3fjx_DzlMaCSXUGQ4">
+                    <div class="tinkercadLink">Link to Tinkercad Simulation</div>
                 </a>
             </div>
-            <div class="overview tile">
-                <h1>Project Overview</h1>
-                The 4-Digit Door Lock is a security prototype designed to simulate a digital deadbolt. It features a
-                programmable password mode, input masking for security, a timeout function to clear idle inputs, and a
-                motorized "latch" (servo).
+
+            <div class="report-sec">
+                <h2>Project Overview</h2>
+                <p>The 4-Digit Door Lock is a security prototype designed to simulate a digital deadbolt. It features a
+                    programmable password mode, input masking for security, a timeout function to clear idle inputs, and
+                    a motorized "latch" (servo).</p>
             </div>
-            <div class="Hardware tile">
-                <h1>Hardware Specifications</h1>
-                The system is built around the Arduino Uno microcontroller. The following components are integrated as
-                shown in the provided wiring diagram and schematic:
-                <h2>Component List & Connectivity</h2>
+
+            <div class="report-sec">
+                <h2>Hardware Specifications</h2>
+                <p>The system is built around the Arduino Uno microcontroller. The following components are integrated
+                    as shown in the provided wiring diagram and schematic:</p>
+                <h3>Component List & Connectivity</h3>
                 <table>
                     <tr>
                         <th>Component</th>
@@ -72,84 +79,77 @@
                         <td>VEE / Vo</td>
                         <td>Adjusts the contrast of the 16x2 LCD screen.</td>
                     </tr>
-
                 </table>
+            </div>
 
-            </div>
-            <div class="diagrams tile">
-                <h1>Wiring Diagram and Schematic</h1>
-                <img src="../assets/doorlockW.png" alt="Doorlock Wiring Diagram">
-                <p>Figure 1: Wiring Diagram</p>
-                <img src="../assets/doorlock.png" alt="Doorlock Schematic">
-                <p>Figure 2: Schematic</p>
-            </div>
-            <div class="software tile">
-                <h1>System Logic and Software</h1>
-                <p>
-                    The software is structured into three primary operational states: Setup, Authentication, and Lock
-                    Actuation.
-                </p>
-                <h2>A. Initialization (Setup)</h2>
+            <div class="report-sec">
+                <h2>System Logic and Software</h2>
+                <p>The software is structured into three primary operational states: Setup, Authentication, and Lock
+                    Actuation.</p>
+
+                <h3>A. Initialization (Setup)</h3>
                 <p>Upon power-up, the system initializes the LCD, attaches the Servo to pin 9, and sets the initial
                     position to 0° (Locked). The code uses pinMode(btnPins[i], INPUT_PULLUP) to simplify wiring by
                     eliminating the need for external pull-up resistors.</p>
 
-                <h2>B. Password Programming</h2>
+                <h3>B. Password Programming</h3>
                 <p>The system enters "Set Password" mode under two conditions:</p>
                 <ul>
                     <li>Initial Startup: The startup flag is set to 1.</li>
+                    <li>Manual Override: Pressing Button 1 and Button 4 simultaneously.</li>
                 </ul>
-
-                <p>Manual Override: Pressing Button 1 and Button 4 simultaneously.</p>
                 <p>During this mode, both LEDs remain HIGH. The system records the next four button presses into the
                     password[4] array.</p>
 
-                <h2>C. Security Features</h2>
-                <p>Input Masking: To prevent "shoulder surfing," the LCD displays an asterisk (*) instead of the actual
-                    digit during entry.</p>
-                <p>Timeout Function: If a user begins entering a code but stops for more than 5000ms, the loop()
-                    function
-                    triggers a timeout, clears the current inputCount, and flashes the Red LED.</p>
-
-                <p>Debouncing: A delay(300) is implemented after button presses to prevent "bouncing," where a single
-                    physical press is registered as multiple inputs.</p>
-
-            </div>
-            <div class="operation tile">
-
-                <h1>Operation Flow</h1>
-                <p>Idle State: LCD displays "Enter Code:". Servo is at 0°.</p>
-
-                <p>Input State: User presses buttons. For each press, handleButtonPress() updates the attempt[] array.
-                </p>
-
-                <p>Verification: Once inputCount reaches 4, checkPassword() compares the attempt array to the stored
-                    password array.</p>
-
+                <h3>C. Security Features</h3>
                 <ul>
-                    <li>Match: Green LED turns ON, Servo rotates to 180°, waits 3 seconds, then returns to 0°.</li>
+                    <li><strong>Input Masking:</strong> To prevent "shoulder surfing," the LCD displays an asterisk (*)
+                        instead of the actual digit during entry.</li>
+                    <li><strong>Timeout Function:</strong> If a user begins entering a code but stops for more than
+                        5000ms, the loop() function triggers a timeout, clears the current inputCount, and flashes the
+                        Red LED.</li>
+                    <li><strong>Debouncing:</strong> A delay(300) is implemented after button presses to prevent
+                        "bouncing," where a single physical press is registered as multiple inputs.</li>
                 </ul>
+            </div>
 
+            <div class="report-sec">
+                <h2>Operation Flow</h2>
                 <ul>
-                    <li>Mismatch: Red LED flashes three times; access is denied.</li>
+                    <li><strong>Idle State:</strong> LCD displays "Enter Code:". Servo is at 0°.</li>
+                    <li><strong>Input State:</strong> User presses buttons. For each press, handleButtonPress() updates
+                        the attempt[] array.</li>
+                    <li><strong>Verification:</strong> Once inputCount reaches 4, checkPassword() compares the attempt
+                        array to the stored password array.</li>
+                    <li><strong>Match:</strong> Green LED turns ON, Servo rotates to 180°, waits 3 seconds, then returns
+                        to 0°.</li>
+                    <li><strong>Mismatch:</strong> Red LED flashes three times; access is denied.</li>
                 </ul>
-
-            </div>
-            <div class="analysis tile">
-
-                <h1>Schematic Analysis</h1>
-                <p>Resistors: Current-limiting resistors (R1, R2, R4)
-                    are used for the LEDs and LCD backlight to prevent overcurrent.
-                </p>
-                <p>LCD Wiring: The LCD is wired in 4-bit
-                    mode using the Analog pins (A0-A5, addressed as digital pins 14-19 in the code) to save digital I/O
-                    space for the buttons and servo.
-                </p>
-
             </div>
 
+            <div class="report-sec">
+                <h2>Schematic Analysis</h2>
+                <ul>
+                    <li><strong>Resistors:</strong> Current-limiting resistors (R1, R2, R4) are used for the LEDs and
+                        LCD backlight to prevent overcurrent.</li>
+                    <li><strong>LCD Wiring:</strong> The LCD is wired in 4-bit mode using the Analog pins (A0-A5,
+                        addressed as digital pins 14-19 in the code) to save digital I/O space for the buttons and
+                        servo.</li>
+                </ul>
+            </div>
+
+            <!-- Right column for diagrams -->
+            <div class="report-sec">
+                <h2>Wiring Diagram and Schematic</h2>
+                <div class="diagrams">
+                    <img src="../assets/doorlockW.png" alt="Doorlock Wiring Diagram">
+                    <p>Figure 1: Wiring Diagram</p>
+                    <img src="../assets/doorlock.png" alt="Doorlock Schematic">
+                    <p>Figure 2: Schematic</p>
+                </div>
+            </div>
         </div>
-    </main>
+    </div>
 </body>
 
 </html>
