@@ -16,74 +16,180 @@
     </header>
     <div class="report">
         <div class="title">
-            <h1>RC Car Arduino Project</h1>
-            <p>A remote-controlled car built with Arduino, featuring motor control, obstacle detection, and wireless communication.</p>
+            <h1>Arduino RC Car</h1>
+            <p>A remote-controlled car project featuring motor control and wireless IR communication.</p>
         </div>
 
         <!-- Main two-column layout container -->
         <div class="content-layout">
             <!-- Left column for written content -->
-            <div class="left-column">
-                <div class="report-sec">
-                    <!-- <h2>Simulation</h2> -->
-                    <a
-                        href="https://www.tinkercad.com/things/">
-                        <div class="tinkercadLink">Link to Tinkercad Simulation</div>
-                    </a>
-                </div>
-                <div class="report-sec">
-                    <h2>Skills Applied</h2>
-                    <div class="skills-grid">
-                        <div class="skill-card">
-                            <h3>Arduino/C++</h3>
-                            <p>Programming microcontroller logic and motor control</p>
-                        </div>
-                        <div class="skill-card">
-                            <h3>Motor Control</h3>
-                            <p>Understanding H-bridge drivers and PWM for speed control</p>
-                        </div>
-                        <div class="skill-card">
-                            <h3>Wireless Communication</h3>
-                            <p>Implementing RF modules for remote control</p>
-                        </div>
-                        <div class="skill-card">
-                            <h3>Sensor Integration</h3>
-                            <p>Ultrasonic sensors for obstacle detection and avoidance</p>
-                        </div>
-                        <div class="skill-card">
-                            <h3>Hardware Wiring</h3>
-                            <p>Connecting motors, sensors, wireless modules and power systems</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="report-sec">
-                    <h2>Challenges</h2>
-                    <div class="skills-grid">
-                        <div class="skill-card">
-                            <h3>Motor Driver Circuit Design</h3>
-                            <p>Designing and implementing H-bridge circuits for bidirectional motor control</p>
-                        </div>
-                        <div class="skill-card">
-                            <h3>Power Management</h3>
-                            <p>Managing battery power distribution between motors, Arduino, and sensors</p>
-                        </div>
-                        <div class="skill-card">
-                            <h3>Wireless Signal Interference</h3>
-                            <p>Ensuring reliable communication between transmitter and receiver modules</p>
-                        </div>
-                        <div class="skill-card">
-                            <h3>Real-time Response</h3>
-                            <p>Implementing fast response times for steering and speed control</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="report-sec-link">
+                <a
+                    href="https://www.tinkercad.com/things/bVVH9IGjNgr-4-digit-door-lock?sharecode=7aZoGCxQgF_apdiYNVk665b2JM3fjx_DzlMaCSXUGQ4">
+                    <div class="tinkercadLink">Link to Tinkercad Simulation</div>
+                </a>
             </div>
 
-            <!-- Right column for PDF -->
-            <div class="right-column">
-                <div class="pdf-container">
-                    <iframe src="../assets/RC_Car.pdf" frameborder="0"></iframe>
+            <div class="report-sec">
+                <h2>Project Overview</h2>
+                <p>This personal project was aimed at creating a 4 motor Infrared Receiver Remote Controlled Car. The
+                    system uses an Arduino Uno to control components, 2 L293D Quadruple Half-H Drivers and an IR
+                    Receiver for wireless input. The RC Car features speed control, basic directional controls, and
+                    peripheral lighting.</p>
+            </div>
+
+            <div class="report-sec">
+                <h2>Hardware Specifications</h2>
+                <p>The system is built around the Arduino Uno microcontroller. The following components are integrated
+                    as shown in the provided wiring diagram and schematic:</p>
+                <h3>Component List & Connectivity</h3>
+                <table>
+                    <tr>
+                        <th>Component</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Arduino R3</td>
+                        <td>Microcontroller board serving as the central processing unit.</td>
+                    </tr>
+                    <tr>
+                        <td>2 L293D Quadruple Half-H Drivers</td>
+                        <td>Motor Drivers</td>
+                    </tr>
+                    <tr>
+                        <td>4 DC Motors</td>
+                        <td>Actuators</td>
+                    </tr>
+                    <tr>
+                        <td>IR Receiver</td>
+                        <td>Receives wireless input control.</td>
+                    </tr>
+                    <tr>
+                        <td>6V Battery (4 x 1.5V AA Batteries)</td>
+                        <td>Power Supply</td>
+                    </tr>
+                    <tr>
+                        <td>LEDs</td>
+                        <td>Visual indicators for power and status.</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="report-sec">
+                <h2>System Architecture & Wiring</h2>
+                <p>The vehicle's logic is distributed across digital and analog pins to manage high-current motors and
+                    signal processing simultaneously.</p>
+
+                <h3>Motor Control Pinout</h3>
+                <p>The motors are controlled via the L293D driver to allow for bi-directional movement and PWM-based
+                    speed control.</p>
+
+                <table>
+                    <tr>
+                        <th>Motor Position</th>
+                        <th>Power (PWM)</th>
+                        <th>Input 1</th>
+                        <th>Input 2</th>
+                    </tr>
+                    <tr>
+                        <td>Front Left</td>
+                        <td>Pin 5</td>
+                        <td>Pin 15 (A1)</td>
+                        <td>Pin 14 (A0)</td>
+                    </tr>
+                    <tr>
+                        <td>Back Left</td>
+                        <td>Pin 6</td>
+                        <td>Pin 4</td>
+                        <td>Pin 7</td>
+                    </tr>
+                    <tr>
+                        <td>Front Right</td>
+                        <td>Pin 10</td>
+                        <td>Pin 8</td>
+                        <td>Pin 12</td>
+                    </tr>
+                    <tr>
+                        <td>Back Right</td>
+                        <td>Pin 9</td>
+                        <td>Pin 18 (A4)</td>
+                        <td>Pin 19 (A5)</td>
+                    </tr>
+                </table>
+
+                <ul>
+                    <li><strong>IR Receiver</strong>: Digital Pin 2</li>
+                    <li><strong>Headlights</strong>: Pin 17 (A3)</li>
+                    <li><strong>Taillights</strong>: Pin 16 (A2)</li>
+                </ul>
+            </div>
+
+            <div class="report-sec">
+                <h2>Implementation</h2>
+                <p>The firmware is written in C++ using the Arduino framework and the IRremote.h library for signal
+                    decoding.</p>
+                <h3>State Machine Logic</h3>
+                <p>The code utilizes an Enumerated Type (RobotState) to manage the vehicle's behavior. This prevents
+                    conflicting commands and ensures smooth transitions between movements.</p>
+
+                <table>
+                    <tr>
+                        <th>State</th>
+                        <th>Action</th>
+                        <th>IR Command Code</th>
+                    </tr>
+                    <tr>
+                        <td>STATE_IDLE</td>
+                        <td>All motors stop; Taillights ON.</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <TD>STATE_FORWARD</TD>
+                        <TD>All motors move forward; Headlights ON</TD>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <TD>STATE_BACKWARD</TD>
+                        <TD>All motors move backward; Taillights ON</TD>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <TD>STATE_LEFT</TD>
+                        <TD>Left wheels reverse, Right wheels forward</TD>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <TD>STATE_RIGHT</TD>
+                        <TD>Right wheels reverse, Left wheels forward</TD>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <TD>STATE_SPEED_UP</TD>
+                        <TD>Increments MOTOR_SPEED by 10 (Max 255)</TD>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <TD>STATE_SLOW_DOWN</TD>
+                        <TD>Decremets MOTOR_SPEED by 10 (Min 0)</TD>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <TD>STATE_EMERGENCY</TD>
+                        <TD>Flashing lights; Motors stopped</TD>
+                        <td>12</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Right column for diagrams -->
+            <div class="report-sec">
+                <h2>Wiring Diagram and Schematic</h2>
+                <div class="diagrams">
+                    <img src="../assets/schem1.png" alt="RC Car Schematic Diagram 1">
+                    <img src="../assets/schem2.png" alt="RC Car Schematic Diagram 2">
+                    <p>Figure 1: Schematic Diagrams</p>
+                    <img src="../assets/wire.png" alt="RC Car Wiring Diagram">
+                    <p>Figure 2: Wiring Diagram</p>
                 </div>
             </div>
         </div>
