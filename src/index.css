@@ -3,7 +3,7 @@
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    min-height: calc(100vh - 70px);
+    height: calc(100vh - 70px);
     margin-top: 70px;
     margin-bottom: 4rem;
     display: flex;
@@ -14,6 +14,29 @@
     text-align: center;
     position: relative;
     overflow: hidden;
+}
+
+/* Mobile hero image fix - scale to screen without gaps */
+@media (max-width: 768px) {
+    .hero {
+        background-size: cover;
+        background-position: center center;
+        background-attachment: scroll;
+        height: auto;
+        min-height: 400px;
+        padding: 2rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        background-size: cover;
+        background-position: center center;
+        height: auto;
+        min-height: 350px;
+        margin-top: 60px;
+        padding: 1.5rem 1rem;
+    }
 }
 
 .hero::before {
@@ -152,6 +175,7 @@
 }
 
 #timeline-grid .grid-card {
+    width: 80%;
     background: var(--panel);
     border: 1px solid var(--border);
     border-radius: 16px;
@@ -188,7 +212,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(37, 99, 235, 0.08);
+    background: rgba(11, 96, 194, 0.2);
     border-radius: 12px;
     padding: 1rem;
 }
@@ -252,14 +276,23 @@
         justify-content: center;
     }
     
+    #timeline-grid {
+        text-align: center;
+    }
+    
+    #timeline-grid h2 {
+        text-align: center;
+    }
+    
     #timeline-grid .grid-row {
         grid-template-columns: 1fr;
         text-align: center;
+        justify-items: center;
     }
     
     #timeline-grid .grid-left, #timeline-grid .grid-right {
         order: 1;
-        background: transparent;
+        /* background: transparent; */
         border: none;
         padding: 0.5rem;
     }
@@ -270,10 +303,10 @@
     }
     
     #timeline-grid .grid-right {
-        background: rgba(16, 185, 129, 0.08);
+        background: rgba(16, 131, 185, 0.08);
         border-radius: 8px;
-        border: 1px solid rgba(16, 185, 129, 0.2);
-        color: #059669;
+        border: 1px solid rgba(16, 69, 185, 0.2);
+        color: #055596;
         font-weight: 600;
     }
 }

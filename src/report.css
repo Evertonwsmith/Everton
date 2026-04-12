@@ -264,10 +264,14 @@ iframe:hover {
     
     .pdf-container {
         min-height: 400px;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
     }
     
     iframe {
         height: 400px;
+        width: 100%;
+        border: none;
     }
 }
 
@@ -332,4 +336,57 @@ iframe:hover {
     color: var(--secondary-color);
     margin: 0;
     line-height: 1.5;
+}
+
+/* Table styling with horizontal scroll for mobile */
+.report-sec table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.report-sec table th,
+.report-sec table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap;
+}
+
+.report-sec table th {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+}
+
+.report-sec table tr:hover {
+    background-color: rgba(37, 99, 235, 0.05);
+}
+
+.report-sec table tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Add scrollbar styling for tables */
+.report-sec table::-webkit-scrollbar {
+    height: 8px;
+}
+
+.report-sec table::-webkit-scrollbar-track {
+    background: var(--bg-color);
+    border-radius: 4px;
+}
+
+.report-sec table::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+.report-sec table::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-hover);
 }
