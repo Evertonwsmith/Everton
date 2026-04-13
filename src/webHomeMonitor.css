@@ -1,11 +1,11 @@
-/* Doorlock Project Specific Styles */
+/* Web Home Monitor Project Specific Styles - Teal Theme */
 :root {
-    --primary-color: #ffb23e;
+    --primary-color: #2dd4bf;
     --bg-color: #f9f9f9;
     --text-color: #333;
     --muted-text: #666;
-    --accent-color: #ff9900;
-    --accent-hover: #d27e00;
+    --accent-color: #14b8a6;
+    --accent-hover: #0d9488;
     --card-bg: #ffffff;
     --border-color: #e0e0e0;
     --hover-bg: #f1f1f1;
@@ -138,7 +138,7 @@ table {
 thead, tbody {
     display: table;
     width: 100%;
-    table-layout: fixed;
+    table-layout: auto;
 }
 
 th,
@@ -147,6 +147,7 @@ td {
     text-align: left;
     border-bottom: 1px solid var(--border-color);
     word-wrap: break-word;
+    white-space: normal;
 }
 
 th {
@@ -173,12 +174,12 @@ li {
     margin-bottom: 8px;
 }
 
-/* Tinkercad link */
-.tinkercadLink {
+/* Demo link */
+.demoLink {
     display: block;
     width: 100%;
     max-width: 400px;
-    background: orange;
+    background: var(--accent-color);
     color: white;
     padding: 15px 24px;
     text-decoration: none;
@@ -190,9 +191,9 @@ li {
     box-sizing: border-box;
 }
 
-.tinkercadLink:hover {
+.demoLink:hover {
     background: var(--accent-hover);
-    color: orange;
+    color: white;
     text-decoration: none;
 }
 
@@ -237,7 +238,7 @@ li {
         padding: 20px;
     }
 
-    .tinkercadLink {
+    .demoLink {
         max-width: 100%;
     }
 }

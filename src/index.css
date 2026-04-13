@@ -80,6 +80,58 @@
     }
 }
 
+/* Current Project Card */
+.current-project-card {
+    max-width: 1200px;
+    margin: -2rem auto 3rem;
+    padding: 0 1rem;
+    position: relative;
+    z-index: 10;
+}
+
+.current-project-card a {
+    display: block;
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.1), rgba(45, 212, 191, 0.15));
+    border: 1px solid rgba(20, 184, 166, 0.3);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(20, 184, 166, 0.1);
+}
+
+.current-project-card a:hover {
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.15), rgba(45, 212, 191, 0.2));
+    border-color: rgba(20, 184, 166, 0.5);
+    box-shadow: 0 8px 25px rgba(20, 184, 166, 0.2);
+    transform: translateY(-2px);
+}
+
+.current-project-card .project-text {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.current-project-card .project-text::before {
+    content: '▶';
+    font-size: 0.8rem;
+    color: var(--primary-color, #2dd4bf);
+}
+
+@media (max-width: 768px) {
+    .current-project-card {
+        margin: -1.5rem auto 2rem;
+    }
+    
+    .current-project-card .project-text {
+        font-size: 1rem;
+    }
+}
+
 /* Modern Section Styling */
 .section-dbl {
     display: grid;
