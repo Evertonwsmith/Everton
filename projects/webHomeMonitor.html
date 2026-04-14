@@ -30,7 +30,7 @@
             </div>
 
             <div class="report-sec">
-                <h2>1. Project Overview</h2>
+                <h2>V1.0 Project Overview</h2>
                 <p>The goal of this project was to first create a Home Assistant interface
                     to sync and control all of my smart home devices. I then wanted to create a
                     Home Assistant controlled robotic unit that would let me monitor my home via
@@ -40,13 +40,36 @@
             </div>
 
             <div class="report-sec">
-                <h2>2. System Architecture</h2>
+                <h2>V1.0 System Architecture</h2>
                 <p>The robot utilizes a "Primary-Secondary" communication model:</p>
                 <ul>
                     <li><strong>Node A (Vision):</strong> ESP32-S3 WROOM-1 (Octal PSRAM). Communicates via WiFi/API to Home Assistant.</li>
                     <li><strong>Node B (Control):</strong> ESP32 + Arduino. The ESP32 handles the HA API and high-level logic; the Arduino handles PWM for motors and timing-sensitive sensor readings (DHT11).</li>
                 </ul>
                 <p><strong>Integration:</strong> Home Assistant acts as the Command & Control center, hosting the MJPEG stream and control entities.</p>
+            </div>
+
+            <div class="report-sec image-row">
+                <div class="image-container">
+                    <img src="../assets/webHomeMonitor/initial_architecture.png" alt="Initial System Architecture Diagram">
+                    <p class="caption">Initial System Architecture Diagram</p>
+                </div>
+            </div>
+
+            <div class="report-sec">
+                <h2>Revisions</h2>
+                <p>After initial testing and research, this project is being pivoted to a more efficient and secure networking structure.</p>
+                <p>The single ESP32-S3 will handle both vision and control functions, reducing complexity and improving performance.</p>
+                <p>This will be connected to a local network via HTTP, and WebSockets will be used to facilitate real-time communication.</p>
+            </div>
+            <div class="report-sec">
+                <h2>V2.0 Project Overview</h2>
+               
+            </div>
+
+            <div class="report-sec">
+                <h2>V2.0 System Architecture</h2>
+                
             </div>
 
             <div class="report-sec">
