@@ -1,0 +1,344 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    min-height: 100vh;
+    color: #e0e0e0;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #00d4ff;
+    margin-bottom: 10px;
+    font-size: 2rem;
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+.description {
+    text-align: center;
+    color: #a0a0a0;
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+}
+
+h2 {
+    color: #00d4ff;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+    padding-bottom: 8px;
+}
+
+h3 {
+    color: #00d4ff;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+/* Chart Container */
+.chart-container {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    overflow: hidden;
+}
+
+#powerTriangle {
+    width: 100%;
+    height: 350px;
+    display: block;
+    cursor: crosshair;
+    border-radius: 10px;
+    background: transparent;
+}
+
+.chart-info {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.info-item {
+    background: rgba(0, 212, 255, 0.1);
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.info-item .label {
+    color: #a0a0a0;
+    margin-right: 8px;
+}
+
+.info-item .value {
+    color: #00d4ff;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Input Container */
+.inputs-container {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.input-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    color: #a0a0a0;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+}
+
+.input-group input {
+    padding: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #00d4ff;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+}
+
+.input-group input:hover {
+    border-color: rgba(0, 212, 255, 0.5);
+}
+
+/* Mode Selector */
+.mode-selector {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.mode-selector label {
+    color: #a0a0a0;
+    font-size: 0.95rem;
+}
+
+.mode-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.mode-btn {
+    padding: 10px 20px;
+    border: 2px solid rgba(0, 212, 255, 0.3);
+    border-radius: 8px;
+    background: transparent;
+    color: #a0a0a0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.mode-btn:hover {
+    border-color: #00d4ff;
+    color: #00d4ff;
+}
+
+.mode-btn.active {
+    background: rgba(0, 212, 255, 0.2);
+    border-color: #00d4ff;
+    color: #00d4ff;
+}
+
+/* Results Container */
+.results-container {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+}
+
+.result-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.result-group label {
+    color: #a0a0a0;
+    margin-bottom: 6px;
+    font-size: 0.85rem;
+}
+
+.result-group input {
+    padding: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    background: rgba(0, 212, 255, 0.08);
+    color: #00d4ff;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* Instructions */
+.instructions {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.instructions ul {
+    list-style: none;
+    padding: 0;
+}
+
+.instructions li {
+    padding: 8px 0;
+    padding-left: 25px;
+    position: relative;
+    color: #c0c0c0;
+}
+
+.instructions li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #00d4ff;
+    font-weight: bold;
+}
+
+.color-p {
+    color: #4ade80;
+    font-weight: bold;
+}
+
+.color-q {
+    color: #f87171;
+    font-weight: bold;
+}
+
+.color-s {
+    color: #60a5fa;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .input-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .results-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .input-group input,
+    .result-group input {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .chart-info {
+        gap: 15px;
+    }
+
+    .info-item {
+        padding: 8px 15px;
+    }
+
+    .info-item .value {
+        font-size: 1rem;
+    }
+
+    .mode-selector {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .mode-buttons {
+        width: 100%;
+    }
+
+    .mode-btn {
+        flex: 1;
+        text-align: center;
+        padding: 10px 15px;
+    }
+}
+
+@media (max-width: 400px) {
+    .input-grid,
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 1.3rem;
+    }
+}
+
+/* Animations */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.dragging .handle {
+    animation: pulse 1s infinite;
+}

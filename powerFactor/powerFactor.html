@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Factor Calculator</title>
+    <link rel="stylesheet" href="powerFactor.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Power Factor Calculator</h1>
+        <p class="description">Interactive power triangle visualization. Drag the angle handle or adjust values below.</p>
+
+        <div class="chart-container">
+            <canvas id="powerTriangle"></canvas>
+            <div class="chart-info">
+                <div class="info-item">
+                    <span class="label">Power Factor:</span>
+                    <span class="value" id="pfDisplay">1.000</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Phase Angle (θ):</span>
+                    <span class="value" id="angleDisplay">0.00°</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="inputs-container">
+            <h2>Input Parameters</h2>
+            <div class="input-grid">
+                <div class="input-group">
+                    <label for="voltage">Voltage (V)</label>
+                    <input type="number" id="voltage" value="120" min="0" step="1">
+                </div>
+                <div class="input-group">
+                    <label for="frequency">Frequency (Hz)</label>
+                    <input type="number" id="frequency" value="60" min="0" step="1">
+                </div>
+                <div class="input-group">
+                    <label for="resistance">Resistance (R) [Ω]</label>
+                    <input type="number" id="resistance" value="10" min="0.01" step="0.01">
+                </div>
+                <div class="input-group">
+                    <label for="reactance">Reactance (X) [Ω]</label>
+                    <input type="number" id="reactance" value="5" step="0.01">
+                </div>
+            </div>
+
+            <div class="mode-selector">
+                <label>Reactance Type:</label>
+                <div class="mode-buttons">
+                    <button class="mode-btn active" data-mode="inductive">Inductive (+X)</button>
+                    <button class="mode-btn" data-mode="capacitive">Capacitive (-X)</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="results-container">
+            <h2>Calculated Values</h2>
+            <div class="results-grid">
+                <div class="result-group">
+                    <label>Apparent Power (S) [VA]</label>
+                    <input type="number" id="apparentPower" readonly step="0.01">
+                </div>
+                <div class="result-group">
+                    <label>Active Power (P) [W]</label>
+                    <input type="number" id="activePower" readonly step="0.01">
+                </div>
+                <div class="result-group">
+                    <label>Reactive Power (Q) [VAR]</label>
+                    <input type="number" id="reactivePower" readonly step="0.01">
+                </div>
+                <div class="result-group">
+                    <label>Impedance (Z) [Ω]</label>
+                    <input type="number" id="impedance" readonly step="0.01">
+                </div>
+                <div class="result-group">
+                    <label>Current (I) [A]</label>
+                    <input type="number" id="current" readonly step="0.01">
+                </div>
+                <div class="result-group">
+                    <label>Power Factor</label>
+                    <input type="number" id="powerFactor" readonly step="0.001" max="1" min="0">
+                </div>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3>Instructions</h3>
+            <ul>
+                <li><strong>Drag the angle handle</strong> on the chart to adjust the phase angle interactively</li>
+                <li><strong>Enter values</strong> in the input fields to calculate power parameters</li>
+                <li>The power triangle shows: <span class="color-p">P (Active)</span>, <span class="color-q">Q (Reactive)</span>, <span class="color-s">S (Apparent)</span></li>
+                <li>Switch between <strong>Inductive</strong> (lagging PF) and <strong>Capacitive</strong> (leading PF) modes</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="powerFactor.js"></script>
+</body>
+</html>

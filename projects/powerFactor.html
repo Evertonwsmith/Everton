@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Factor Calculator</title>
+    <link rel="stylesheet" href="../src/theme.css" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            padding: 15px 20px;
+            background: rgba(26, 26, 46, 0.95);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+        }
+        
+        .back-button {
+            background: rgba(0, 212, 255, 0.15);
+            border: 2px solid rgba(0, 212, 255, 0.4);
+            color: #00d4ff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .back-button:hover {
+            background: rgba(0, 212, 255, 0.25);
+            border-color: #00d4ff;
+            transform: translateX(-3px);
+        }
+        
+        iframe {
+            flex: 1;
+            width: 100%;
+            border: none;
+            min-height: calc(100vh - 80px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../projects.html" class="back-button" aria-label="Back to Projects">
+            ← Back to Projects
+        </a>
+    </header>
+    
+    <iframe src="../powerFactor/powerFactor.html" title="Power Factor Calculator" aria-label="Interactive Power Factor Calculator tool"></iframe>
+</body>
+</html>
