@@ -1,106 +1,302 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Everton | About</title>
-    <link rel="stylesheet" href="src/theme.css" />
-    <link rel="stylesheet" href="src/index.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Everton Smith - Software Developer & Electrical Engineering Technology Student. Building robust backend systems and innovative hardware solutions.">
+    <meta name="keywords"
+        content="Everton Smith, software developer, electrical engineering, Java, API design, embedded systems">
+    <meta name="author" content="Everton Smith">
+
+    <title>Everton Smith</title>
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
+
 <body>
-    <header class="topnav" id="topnav">
-        <div class="topnav-inner">
-            <div class="navlinks" id="navlinks">
-                <a href="index.html">Home</a>
-                <a href="resume.html">Resume</a>
-                <a href="projects.html">Projects</a>
-                <a href="contact.html">Contact</a>
-            </div>
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="#home" class="site-logo" aria-label="Home">
+                E<span>S</span>
+            </a>
+
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="menu-icon"></span>
+            </button>
+
+            <nav class="nav-links" aria-label="Main navigation">
+                <ul>
+                    <li><a href="#home" class="nav-link" aria-current="page">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#work" class="nav-link">Work</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <section class="hero">
-        <h1>Everton Smith</h1>
-        <p>Software Developer | Electrical Engineering Student | Tech Enthusiast</p>
-    </section>
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="section hero-section">
+            <div class="section-container">
+                <h1 class="hero-title">
+                    Everton Smith
+                </h1>
 
-    <!-- <section class="current-project-card">
-        <a href="projects/webHomeMonitor.html">
-            <span class="project-text">Current project: Home Assistant Smart Home Monitor</span>
-        </a>
-    </section> -->
-
-    <main class="site-shell">
-        <section class="section-dbl" id="about">
-            <div class="section-dbl-inner">
-                <h2>About Myself</h2>
-                <p>
-                    I am an Electrical Engineering Technology student with a six-year professional background in
-                    software development.
+                <p class="hero-subtitle">
+                    Software Developer & Electrical Engineering Technology Student
                 </p>
-                <p>My passion lies in bridging the gap between complex software logic and
-                    physical electrical systems. </p>
-            </div>
-            <div class="section-dbl-inner" id="profilePic">
-                <img src="assets/profilePic.jpg" alt="Profile Photo of Everton Smith" />
+
+                <p class="hero-description">
+                    Combining 5+ years of professional software development with hands-on hardware, automation, and
+                    embedded systems engineering.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">
+                        View My Work
+                    </a>
+                </div>
+
+                <div class="hero-links">
+                    <a href="https://www.linkedin.com/in/evertonwsmith/" target="_blank" rel="noopener noreferrer">
+                        LinkedIn
+                    </a>
+                    <a href="mailto:evertonsmith.elec@gmail.com">
+                        Email
+                    </a>
+                    <a href="https://www.github.com/evertonwsmith" target="_blank" rel="noopener noreferrer">
+                        GitHub
+                    </a>
+                </div>
             </div>
         </section>
 
-        <section class="section" id="timeline-grid">
-            <h2>Education & Experience</h2>
-            <div class="grid-row">
-                <div class="grid-card grid-left">
-                    <img src="assets/sait.jpg" alt="SAIT Logo" />
+        <!-- About Section -->
+        <section id="about" class="section about-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2>About Me</h2>
                 </div>
-                <div class="grid-card grid-center">
-                    <strong>Electrical Engineering Technology</strong><br>
-                    <i>Southern Alberta Institute of Technology (SAIT)</i>
-                </div>
-                <div class="grid-card grid-right">
-                    2026 - Present
+
+                <div class="about-grid">
+                    <div class="about-image">
+                        <img src="assets/images/profilePic.jpg" alt="Everton Smith" class="profile-image">
+                    </div>
+
+                    <div class="about-text">
+                        <p>
+                            Experienced Software Developer currently studying Electrical Engineering Technology at SAIT.
+                        </p>
+                        <p>
+                            Passionate about connecting hardware and software to develop creative solutions.
+                        </p>
+
+                        <ul>
+                            <li>2014 to 2019 - B.Sc in Computer Science - UBCO Kelowna, BC</li>
+                            <li>2019 to 2025 - Software Developer - UKG (Kronos)</li>
+                            <li>2026 to Present - Electrical Engineering Technology Student - SAIT, Calgary, AB</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="grid-row">
-                <div class="grid-card grid-left">
-                    <img src="assets/ukg.png" alt="UKG Logo" />
+        </section>
+
+        <!-- Work Section -->
+        <section id="work" class="section work-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2>Experience</h2>
                 </div>
-                <div class="grid-card grid-center">
-                    <strong>Software Developer</strong><br>
-                    <i>Ultimate Kronos Group</i>
-                </div>
-                <div class="grid-card grid-right">
-                    2019 - 2025
+
+                <div class="work-list">
+                    <article class="work-entry">
+                        <div class="work-header">
+                            <h3 class="work-role">Software Developer</h3>
+                            <span class="work-company">UKG (Ultimate Kronos Group)</span>
+                            <span class="work-dates">2019 - 2025</span>
+                        </div>
+                        <p>
+                            Developer for Cloud-based Software as a Service Workforce management software.<br>
+                            Focused on building scalable APIs and customer data management.
+                        </p>
+                        <br>
+                        <ul class="work-tech-list">
+                            <li>Java</li>
+                            <li>Spring Boot</li>
+                            <li>PostgreSQL</li>
+                        </ul>
+                    </article>
                 </div>
             </div>
-            <div class="grid-row">
-                <div class="grid-card grid-left">
-                    <img src="assets/ubco.jpg" alt="UBCO Logo" />
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section projects-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2>Projects</h2>
                 </div>
-                <div class="grid-card grid-center">
-                    <strong>Bachelor of Science in Computer Science</strong><br>
-                    <i>University of British Columbia Okanagan (UBCO)</i>
+
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <div class="card-image">
+                            <img src="assets/images/html.png" alt="Project Preview" class="card-image-content">
+                        </div>
+
+                        <div class="card-body">
+                            <h3 class="card-title">ESP32 Smart Plant Watering System</h3>
+                            <p class="card-description">
+                                Network connected web server hosted on an ESP32 microcontroller that monitors soil
+                                moisture and automatically waters plants when needed.
+                            </p>
+
+                            <div class="card-links">
+                                <a href="https://github.com/Evertonwsmith/PlantWaterSystem"
+                                    class="card-link card-link--source" target="_blank" rel="noopener noreferrer">
+                                    Source Code
+                                </a>
+                            </div>
+
+                            <ul class="card-tags">
+                                <li>C++</li>
+                                <li>ESP32</li>
+                                <li>Circuitry Design</li>
+                                <li>HTML/CSS</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="card-image">
+                            <img src="assets/photos/car1.jpg" alt="Project Preview" class="card-image-content">
+                        </div>
+
+                        <div class="card-body">
+                            <h3 class="card-title">Local Network Smartcar</h3>
+                            <p class="card-description">
+                                ESP32 and Arduino project that allows users to control a small smart car over a local
+                                network connection. The car is equipped with a camera and can be controlled using a web
+                                interface.
+                            </p>
+
+                            <div class="card-links">
+                                <a href="https://github.com/Evertonwsmith/Wifi-Smart-Car/tree/main"
+                                    class="card-link card-link--source" target="_blank" rel="noopener noreferrer">
+                                    Source Code
+                                </a>
+                            </div>
+
+                            <ul class="card-tags">
+                                <li>C++</li>
+                                <li>ESP32</li>
+                                <li>Arduino</li>
+                                <li>HTML/CSS</li>
+                            </ul>
+                        </div>
+                    </article>
                 </div>
-                <div class="grid-card grid-right">
-                    2019
+
+                <!-- Compact project cards -->
+                <div class="projects-grid-compact">
+
+                    <article class="project-card-compact">
+                        <div class="card-image">
+                            <img src="assets/images/v1.png" alt="Project thumbnail">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Portfolio V1</h3>
+                            <p class="card-description">Previous version of this portfolio built with HTML, CSS and
+                                vanilla JS.</p>
+                            <div class="card-links">
+                                <a href="Version 1.0/EvertonWebsite/index.html" class="card-link card-link--source">View</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="project-card-compact">
+                        <div class="card-image">
+                            <img src="assets/images/doorlock.png" alt="Project thumbnail">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">4 Digit Door Lock</h3>
+                            <p class="card-description">A simple 4-digit door lock system built with Arduino.</p>
+                            <div class="card-links">
+                                <a href="https://www.tinkercad.com/things/bVVH9IGjNgr-4-digit-door-lock?sharecode=7aZoGCxQgF_apdiYNVk665b2JM3fjx_DzlMaCSXUGQ4"
+                                    class="card-link card-link--source">Simulation</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="project-card-compact">
+                        <div class="card-image">
+                            <img src="assets/images/quiz.png" alt="arduino quiz project thumbnail">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Boolean Algebra Quiz</h3>
+                            <p class="card-description">Arduino + LCD screen quiz on Boolean algebra.</p>
+                            <div class="card-links">
+                                <a href="https://www.tinkercad.com/things/2bUNRqS9FN4-trivia?sharecode=mQm1TOrS0dfiZms-TswxxG1CJVHEV9KaQx-uh86eyvs"
+                                    class="card-link card-link--source">Simulation</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="project-card-compact">
+                        <div class="card-image">
+                            <img src="assets/images/wire.png" alt="Project thumbnail">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">IR RC Car</h3>
+                            <p class="card-description">Arduino-based remote-controlled car with infrared control input.
+                            </p>
+                            <div class="card-links">
+                                <a href="https://www.tinkercad.com/things/aQfZkLW3sli-rc-car?sharecode=UvIGY90mfMutPGOnq6Eh5ffXrDJVMgH58oRMKEzw_QY"
+                                    class="card-link card-link--source">Simulation</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="project-card-compact">
+                        <div class="card-image">
+                            <img src="assets/images/ther.png" alt="Project thumbnail">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">3 Scale Theremin</h3>
+                            <p class="card-description">A theremin with three scales, built with Arduino.</p>
+                            <div class="card-links">
+                                <a href="https://www.tinkercad.com/things/eGvXuMlm5by-theramin?sharecode=Yf7uWzrJ44AQjvdGwUphsXOTc72HH8SupWu_lsWc-NM"
+                                    class="card-link card-link--source">Simulation</a>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
     </main>
 
-    <script>
-        const topnav = document.getElementById('topnav');
-        const hero = document.querySelector('.hero');
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p class="footer-copyright">
+                &copy; <span id="current-year"></span>
+                Everton Smith. All rights reserved.
+            </p>
 
-        window.addEventListener('scroll', () => {
-            const isScrolled = window.scrollY > 10;
-            if (isScrolled) {
-                topnav.classList.add('scrolled');
-                hero.classList.add('scrolled');
-            } else {
-                topnav.classList.remove('scrolled');
-                hero.classList.remove('scrolled');
-            }
-        });
-    </script>
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#work">Work</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                </ul>
+            </nav>
+
+            <a href="#home" class="back-to-top" aria-label="Back to top">
+                &uarr; Back to Top
+            </a>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
 </body>
+
 </html>

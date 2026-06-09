@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Everton | About</title>
+    <link rel="stylesheet" href="src/theme.css" />
+    <link rel="stylesheet" href="src/index.css" />
+</head>
+<body>
+    <header class="topnav" id="topnav">
+        <div class="topnav-inner">
+            <div class="navlinks" id="navlinks">
+                <a href="index.html">Home</a>
+                <a href="resume.html">Resume</a>
+                <a href="projects.html">Projects</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Everton Smith</h1>
+        <p>Software Developer | Electrical Engineering Student | Tech Enthusiast</p>
+    </section>
+
+    <!-- <section class="current-project-card">
+        <a href="projects/webHomeMonitor.html">
+            <span class="project-text">Current project: Home Assistant Smart Home Monitor</span>
+        </a>
+    </section> -->
+
+    <main class="site-shell">
+        <section class="section-dbl" id="about">
+            <div class="section-dbl-inner">
+                <h2>About Myself</h2>
+                <p>
+                    I am an Electrical Engineering Technology student with a six-year professional background in
+                    software development.
+                </p>
+                <p>My passion lies in bridging the gap between complex software logic and
+                    physical electrical systems. </p>
+            </div>
+            <div class="section-dbl-inner" id="profilePic">
+                <img src="assets/profilePic.jpg" alt="Profile Photo of Everton Smith" />
+            </div>
+        </section>
+
+        <section class="section" id="timeline-grid">
+            <h2>Education & Experience</h2>
+            <div class="grid-row">
+                <div class="grid-card grid-left">
+                    <img src="assets/sait.jpg" alt="SAIT Logo" />
+                </div>
+                <div class="grid-card grid-center">
+                    <strong>Electrical Engineering Technology</strong><br>
+                    <i>Southern Alberta Institute of Technology (SAIT)</i>
+                </div>
+                <div class="grid-card grid-right">
+                    2026 - Present
+                </div>
+            </div>
+            <div class="grid-row">
+                <div class="grid-card grid-left">
+                    <img src="assets/ukg.png" alt="UKG Logo" />
+                </div>
+                <div class="grid-card grid-center">
+                    <strong>Software Developer</strong><br>
+                    <i>Ultimate Kronos Group</i>
+                </div>
+                <div class="grid-card grid-right">
+                    2019 - 2025
+                </div>
+            </div>
+            <div class="grid-row">
+                <div class="grid-card grid-left">
+                    <img src="assets/ubco.jpg" alt="UBCO Logo" />
+                </div>
+                <div class="grid-card grid-center">
+                    <strong>Bachelor of Science in Computer Science</strong><br>
+                    <i>University of British Columbia Okanagan (UBCO)</i>
+                </div>
+                <div class="grid-card grid-right">
+                    2019
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const topnav = document.getElementById('topnav');
+        const hero = document.querySelector('.hero');
+
+        window.addEventListener('scroll', () => {
+            const isScrolled = window.scrollY > 10;
+            if (isScrolled) {
+                topnav.classList.add('scrolled');
+                hero.classList.add('scrolled');
+            } else {
+                topnav.classList.remove('scrolled');
+                hero.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
