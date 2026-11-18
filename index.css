@@ -1,0 +1,76 @@
+body {
+    font-family: 'Helvetica';
+    letter-spacing: 2px;
+    padding: 0 1rem;
+}
+
+h1 {
+    font-size: 2.2rem;
+    margin: 1rem 0;
+}
+
+h2 {
+    font-size: 1rem;
+    color: #646464;
+    padding: 0;
+    margin: 0;
+}
+
+h3 {
+    font-size: .8rem;
+    color: #2b2b2b;
+    padding: 0;
+    margin: .7rem 0 0 0;
+    font-weight: 400;
+}
+
+.links {
+    margin: 0;
+}
+
+.link {
+    margin: 1.3rem 0;
+    font-size: 1.4rem;
+}
+.sm{
+    font-size: .8rem;
+    color: #656565;
+}
+.sm a:hover {
+    font-size: .8rem;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+a:hover {
+    color: #656565;
+    font-size: 1.5rem;
+}
+
+.resume h2 {
+    font-size: 1rem;
+    color: #646464;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.resume h3 {
+    font-size: .8rem;
+    color: #2b2b2b;
+    padding: 0;
+    margin: .7rem 0 0 0;
+    font-weight: 400;
+}
+.back{
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: #000;
+    background-color: #f3f3f3;
+    padding: .5rem;
+    border-radius: 20%;
+}
