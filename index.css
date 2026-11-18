@@ -32,3 +32,72 @@ body{
     background-color: #ffffff;
     cursor: pointer;
 }
+
+/* --- Transition animations --- */
+
+/* Non-selected options fall down one at a time */
+.fall-down{
+    animation: fallDown 0.7s ease-in forwards;
+}
+@keyframes fallDown{
+    0%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100%{
+        transform: translateY(130vh);
+        opacity: 0;
+    }
+}
+
+/* Selected option expands and dissolves */
+.expand-dissolve{
+    animation: expandDissolve 0.9s ease-in forwards;
+}
+@keyframes expandDissolve{
+    0%{
+        transform: scale(1);
+        opacity: 1;
+    }
+    100%{
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+/* New option container fades in */
+.container-fade-in{
+    animation: containerFadeIn 0.8s ease-out forwards;
+}
+@keyframes containerFadeIn{
+    0%{
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100%{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Back button on option container divs */
+.back-btn{
+    margin-top: 30px;
+    padding: 12px 28px;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    background-color: #99b396;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+.back-btn:hover{
+    background-color: #7a9378;
+    transform: scale(1.05);
+}
+.back-btn:active{
+    transform: scale(0.95);
+}
