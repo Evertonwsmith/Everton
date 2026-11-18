@@ -1,21 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     const optionsMenu = document.getElementById('options-menu');
-    const mainContainer = document.getElementById('main-container');
     const fallDelay = 120; // ms between each option falling
     const fallDuration = 600; // ms - matches CSS fallDown animation
+    let isTransitioning = false; // lock to prevent double-clicks mid-animation
 
-    function attachOptionListeners() {
-        document.querySelectorAll('.option').forEach(option => {
-            option.addEventListener('click', () => handleOptionSelect(option));
-        });
-    }
-
-    function attachBackListeners() {
-        document.querySelectorAll('.back-btn').forEach(btn => {
-            btn.addEventListener('click', () => handleBack(btn));
-        });
-    }
-
+    /**
+     * Resets all options to their initial state (removes fall-down, opacity, transition).
+     */
     function resetOptions() {
         document.querySelectorAll('.option').forEach(option => {
             option.classList.remove('fall-down');
@@ -31,9 +22,17 @@ document.addEventListener('DOMContentLoaded', () => {
      * 3. The matching section container fades in
      */
     function handleOptionSelect(selected) {
+        if (isTransitioning) return;
+        isTransitioning = true;
+
         const targetId = selected.dataset.target;
         const options = Array.from(document.querySelectorAll('.option'));
         const targetSection = document.getElementById(targetId);
+
+        if (!targetSection) {
+            isTransitioning = false;
+            return;
+        }
 
         // 1. Other options fall down one at a time
         options.forEach((option, index) => {
@@ -49,13 +48,12 @@ document.addEventListener('DOMContentLoaded', () => {
         selected.style.opacity = '0';
 
         // 2. After falls finish, hide menu and show target section
-        // fallDelay * (options.length - 1) = last fall start time, + fallDuration = last fall end time
         const showDelay = fallDelay * (options.length - 1) + fallDuration + 100;
 
         setTimeout(() => {
             optionsMenu.style.display = 'none';
             targetSection.classList.add('active');
-            attachBackListeners();
+            isTransitioning = false;
         }, showDelay);
     }
 
@@ -64,6 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
      * then brings back the options menu with a return animation.
      */
     function handleBack(btn) {
+        if (isTransitioning) return;
+        isTransitioning = true;
+
         const section = btn.closest('.section');
 
         // Exit animation on current section
@@ -82,10 +83,16 @@ document.addEventListener('DOMContentLoaded', () => {
             optionsMenu.classList.add('menu-return');
 
             resetOptions();
+            isTransitioning = false;
         }, 400);
     }
 
-    // Initialise
-    attachOptionListeners();
-    attachBackListeners();
+    // Initialise: attach all listeners once (elements stay in DOM, just hidden/shown)
+    document.querySelectorAll('.option').forEach(option => {
+        option.addEventListener('click', () => handleOptionSelect(option));
+    });
+
+    document.querySelectorAll('.back-btn').forEach(btn => {
+        btn.addEventListener('click', () => handleBack(btn));
+    });
 });
