@@ -5,16 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Everton Smith</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
     <script src="script.js"></script>
-    <div class="container" id="main-container">
-    <div class="option">Contact</div>
-    <div class="option">Resume</div>
-    <div class="option">About</div>
-    <div class="option">Projects</div>
+    <div id="main-container">
+        <!-- Main option menu (visible by default) -->
+        <div id="options-menu">
+            <div class="option" data-target="Contact">Contact</div>
+            <div class="option" data-target="Resume">Resume</div>
+            <div class="option" data-target="About">About</div>
+            <div class="option" data-target="Projects">Projects</div>
+        </div>
+
+        <!-- Section containers (hidden by default) -->
+        <div class="section" id="Contact">
+            <h1>Contact</h1>
+            <p>Welcome to the Contact section.</p>
+            <button class="back-btn">Back</button>
+        </div>
+        <div class="section" id="Resume">
+            <h1>Resume</h1>
+            <p>Welcome to the Resume section.</p>
+            <button class="back-btn">Back</button>
+        </div>
+        <div class="section" id="About">
+            <h1>About</h1>
+            <p>Welcome to the About section.</p>
+            <button class="back-btn">Back</button>
+        </div>
+        <div class="section" id="Projects">
+            <h1>Projects</h1>
+            <p>Welcome to the Projects section.</p>
+            <button class="back-btn">Back</button>
+        </div>
     </div>
 </body>
 

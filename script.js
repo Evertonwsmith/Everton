@@ -1,17 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const optionsMenu = document.getElementById('options-menu');
     const mainContainer = document.getElementById('main-container');
-    const optionLabels = ['Contact', 'Resume', 'About', 'Projects'];
-
-    /**
-     * Rebuilds the original option divs inside the main container
-     * and re-attaches click listeners to each one.
-     */
-    function restoreOptions() {
-        mainContainer.innerHTML = optionLabels
-            .map(label => `<div class="option">${label}</div>`)
-            .join('');
-        attachOptionListeners();
-    }
+    const fallDelay = 120; // ms between each option falling
+    const fallDuration = 600; // ms - matches CSS fallDown animation
 
     function attachOptionListeners() {
         document.querySelectorAll('.option').forEach(option => {
@@ -19,17 +10,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function attachBackListeners() {
+        document.querySelectorAll('.back-btn').forEach(btn => {
+            btn.addEventListener('click', () => handleBack(btn));
+        });
+    }
+
+    function resetOptions() {
+        document.querySelectorAll('.option').forEach(option => {
+            option.classList.remove('fall-down');
+            option.style.opacity = '1';
+            option.style.transition = '';
+        });
+    }
+
     /**
      * Runs the transition sequence when an option is selected:
      * 1. Every other option falls down one at a time (sequential delays)
-     * 2. The selected option expands and dissolves
-     * 3. A new .container div (id matching the option text) fades in
-     *    with a back button that restores the original options
+     * 2. Selected option dissolves out
+     * 3. The matching section container fades in
      */
     function handleOptionSelect(selected) {
-        const optionText = selected.textContent.trim();
+        const targetId = selected.dataset.target;
         const options = Array.from(document.querySelectorAll('.option'));
-        const fallDelay = 120; // ms between each option falling
+        const targetSection = document.getElementById(targetId);
 
         // 1. Other options fall down one at a time
         options.forEach((option, index) => {
@@ -40,45 +44,48 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // 2. Selected option expands and dissolves after the others have fallen
+        // Selected option dissolves out quickly
+        selected.style.transition = 'opacity 0.3s ease';
+        selected.style.opacity = '0';
+
+        // 2. After falls finish, hide menu and show target section
+        // fallDelay * (options.length - 1) = last fall start time, + fallDuration = last fall end time
+        const showDelay = fallDelay * (options.length - 1) + fallDuration + 100;
+
         setTimeout(() => {
-            selected.classList.add('expand-dissolve');
-        }, options.length * fallDelay);
+            optionsMenu.style.display = 'none';
+            targetSection.classList.add('active');
+            attachBackListeners();
+        }, showDelay);
+    }
 
-        // 3. Once animations finish, replace options with the new container div
+    /**
+     * Handles back button: hides current section with exit animation,
+     * then brings back the options menu with a return animation.
+     */
+    function handleBack(btn) {
+        const section = btn.closest('.section');
+
+        // Exit animation on current section
+        section.classList.remove('active');
+        section.classList.add('section-exit');
+
         setTimeout(() => {
-            options.forEach(option => option.remove());
+            section.style.display = 'none';
+            section.classList.remove('section-exit');
 
-            const newContainer = document.createElement('div');
-            newContainer.className = 'container';
-            newContainer.id = optionText;
+            // Bring back options menu with return animation
+            optionsMenu.style.display = 'flex';
+            optionsMenu.classList.remove('menu-return');
+            // Force reflow to restart animation
+            void optionsMenu.offsetWidth;
+            optionsMenu.classList.add('menu-return');
 
-            newContainer.innerHTML = `
-                <h1>${optionText}</h1>
-                <p>Welcome to the ${optionText} section.</p>
-                <button class="back-btn">Back</button>
-            `;
-
-            mainContainer.appendChild(newContainer);
-
-            // Trigger the fade-in animation
-            requestAnimationFrame(() => {
-                newContainer.classList.add('container-fade-in');
-            });
-
-            // Back button: removes this container and restores original options
-            const backBtn = newContainer.querySelector('.back-btn');
-            backBtn.addEventListener('click', () => {
-                newContainer.style.transition = 'opacity 0.5s ease';
-                newContainer.style.opacity = '0';
-                setTimeout(() => {
-                    newContainer.remove();
-                    restoreOptions();
-                }, 500);
-            });
-        }, options.length * fallDelay + 1000);
+            resetOptions();
+        }, 400);
     }
 
     // Initialise
-    restoreOptions();
+    attachOptionListeners();
+    attachBackListeners();
 });
