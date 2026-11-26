@@ -1,76 +1,157 @@
-body {
-    font-family: 'Helvetica';
-    letter-spacing: 2px;
-    padding: 0 1rem;
+/* ---------- Base ---------- */
+html {
+    scroll-behavior: smooth;
 }
 
+body {
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    letter-spacing: 0.2px;
+    line-height: 1.5;
+    color: #1a1a1a;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0 1.25rem;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Soft entrance animation */
+body {
+    animation: fadeIn 0.6s ease-out both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- Typography ---------- */
 h1 {
-    font-size: 2.2rem;
-    margin: 1rem 0;
+    font-size: 2rem;
+    font-weight: 400;
+    margin: 1.5rem 0 0.25rem 0;
+    letter-spacing: -0.5px;
 }
 
 h2 {
     font-size: 1rem;
-    color: #646464;
-    padding: 0;
-    margin: 0;
+    font-weight: 400;
+    color: #555;
+    margin: 0.25rem 0 0.75rem 0;
 }
 
 h3 {
-    font-size: .8rem;
-    color: #2b2b2b;
-    padding: 0;
-    margin: .7rem 0 0 0;
+    font-size: 0.8rem;
     font-weight: 400;
+    color: #3a3a3a;
+    margin: 0.5rem 0 0 0;
 }
 
+/* ---------- Links ---------- */
 .links {
-    margin: 0;
+    margin: 1rem 0;
+    padding: 0;
 }
 
 .link {
-    margin: 1.3rem 0;
-    font-size: 1.4rem;
+    margin: 1.25rem 0;
+    font-size: 2rem;
 }
-.sm{
-    font-size: .8rem;
-    color: #656565;
-}
-.sm a:hover {
-    font-size: .8rem;
+
+.sm {
+    margin: 1.25rem 0;
+    font-size: 0.85rem;
+    color: #6e6e6e;
 }
 
 a {
     text-decoration: none;
-    color: #000;
+    color: #1a1a1a;
+    transition: color 0.25s ease, opacity 0.2s ease;
 }
 
 a:hover {
-    color: #656565;
-    font-size: 1.5rem;
+    color: #4a4a4a;
+    opacity: 0.85;
 }
 
+a:focus-visible {
+    outline: 2px solid #1a1a1a;
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+/* ---------- Resume page ---------- */
 .resume h2 {
-    font-size: 1rem;
-    color: #646464;
-    padding: 0;
-    margin: 1.5rem 0;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #555;
+    margin: 2rem 0 0.5rem 0;
 }
 
 .resume h3 {
-    font-size: .8rem;
-    color: #2b2b2b;
-    padding: 0;
-    margin: .7rem 0 0 0;
+    font-size: 0.8rem;
     font-weight: 400;
+    color: #3a3a3a;
+    margin: 0.5rem 0 0 0;
 }
-.back{
+
+/* Bolded h3 elements (degrees / job titles) */
+.resume h3:has(b) {
+    font-size: 0.95rem;
+    color: #1a1a1a;
+}
+
+/* ---------- Back button ---------- */
+.back {
     position: fixed;
-    bottom: 1rem;
-    right: 1rem;
-    font-size: 1.5rem;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    font-size: 0.9rem;
+    color: #1a1a1a;
+    background-color: #f4f4f4;
+    padding: 0.55rem 0.75rem;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease,
+        transform 0.2s ease, opacity 0.2s ease;
+}
+
+.back:hover {
+    background-color: #e8e8e8;
     color: #000;
-    background-color: #f3f3f3;
-    padding: .5rem;
-    border-radius: 20%;
+    transform: translateY(-1px);
+}
+
+.back:active {
+    transform: translateY(0);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 480px) {
+    body {
+        padding: 0 1rem;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    .link {
+        font-size: 2rem;
+    }
+
+    .back {
+        bottom: 1rem;
+        right: 1rem;
+        font-size: 0.8rem;
+    }
 }
