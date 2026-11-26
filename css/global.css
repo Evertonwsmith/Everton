@@ -19,13 +19,15 @@
        COLOR PALETTE - Modern Minimalist
        - Refined dark scheme with subtle green accent
        - Soft, muted tones for elegance
+       - Adjusted for WCAG AA readability on body text
     ================================================================
     */
-    --color-primary: #64ff9a;         /* Soft vibrant green */
+    --color-primary: #64ff9a;         /* Soft vibrant green accent */
     --color-secondary: #4ade80;       /* Slightly deeper green */
-    --color-text: #e2e8f0;            /* Soft white text */
-    --color-text-light: #94a3b8;      /* Muted slate */
-    --color-text-muted: #64748b;      /* Even more muted */
+    --color-text: #f1f5f9;            /* Near-white primary text (high contrast) */
+    --color-text-light: #cbd5e1;      /* Secondary text - softer but still readable */
+    --color-text-muted: #94a3b8;      /* Muted captions/labels (WCAG AA on dark bg) */
+    --color-text-body: #e2e8f0;       /* Body copy - softer than headings for comfortable reading */
     --color-bg: #0a0f1a;              /* Very dark navy/charcoal */
     --color-bg-alt: #111827;          /* Slightly lighter dark */
     --color-surface: #1a2332;         /* Card/component surface */
@@ -56,9 +58,9 @@
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
-    --line-height: 1.7;
-    --heading-line-height: 1.15;
-    --letter-spacing-tight: -0.025em;
+    --line-height: 1.75;
+    --heading-line-height: 1.2;
+    --letter-spacing-tight: -0.02em;
     --letter-spacing-wide: 0.05em;
 
     /* ================================================================
@@ -140,7 +142,7 @@ body {
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-normal);
     line-height: var(--line-height);
-    color: var(--color-text);
+    color: var(--color-text-body);
     background-color: var(--color-bg);
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
@@ -164,12 +166,14 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: var(--letter-spacing-tight);
 }
 
-h1 { font-size: var(--font-size-3xl); }
+h1 { font-size: var(--font-size-3xl); margin-bottom: var(--spacing-lg); }
 h2 { 
     font-size: var(--font-size-2xl); 
+    margin-top: var(--spacing-2xl);
     margin-bottom: var(--spacing-md);
 }
-h3 { font-size: var(--font-size-xl); }
+h3 { font-size: var(--font-size-xl); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-md); }
+h4, h5, h6 { margin-top: var(--spacing-lg); margin-bottom: var(--spacing-md); }
 
 a {
     color: var(--color-link);
@@ -259,7 +263,7 @@ button {
 
 .section-header {
     text-align: center;
-    margin-bottom: var(--spacing-3xl);
+    margin-bottom: var(--spacing-2xl);
 }
 
 .section-header h2 {
@@ -338,3 +342,27 @@ button {
     white-space: nowrap;
     border-width: 0;
 }
+
+/* Paragraph breathing room for readable body copy */
+p {
+    margin-top: 0;
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Lead / intro text - slightly larger for emphasis */
+.text-lead {
+    font-size: var(--font-size-lg);
+    line-height: 1.65;
+    color: var(--color-text-light);
+    max-width: 65ch;
+    margin: 0 auto var(--spacing-2xl);
+}
+
+/* Constrain line length to a comfortable reading measure (45-75 chars) */
+.max-width-prose {
+    max-width: 65ch;
+}
+
+/* Text alignment helpers */
+.text-center { text-align: center; }
+.text-left { text-align: left; }

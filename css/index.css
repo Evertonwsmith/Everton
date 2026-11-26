@@ -205,9 +205,9 @@
 .hero-title {
     font-size: var(--font-size-4xl);
     font-weight: var(--font-weight-bold);
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
     line-height: 1.1;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.02em;
     background: linear-gradient(135deg, var(--color-text), var(--color-primary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -216,30 +216,30 @@
 
 .hero-subtitle {
     font-size: var(--font-size-xl);
-    color: var(--color-text-light);
-    margin-bottom: var(--spacing-md);
+    color: var(--color-text);
+    margin-bottom: var(--spacing-lg);
     font-weight: var(--font-weight-normal);
 }
 
 .hero-description {
-    max-width: 600px;
-    margin: 0 auto var(--spacing-2xl) auto;
-    color: var(--color-text-muted);
+    max-width: 65ch;
+    margin: 0 auto var(--spacing-3xl) auto;
+    color: var(--color-text-body);
     font-size: var(--font-size-lg);
-    line-height: var(--line-height);
+    line-height: 1.65;
 }
 
 .hero-actions {
     display: flex;
     justify-content: center;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-2xl);
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-3xl);
 }
 
 .hero-links {
     display: flex;
     justify-content: center;
-    gap: var(--spacing-xl);
+    gap: var(--spacing-2xl);
     flex-wrap: wrap;
     font-size: var(--font-size-sm);
 }
@@ -285,7 +285,7 @@
 .about-grid {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    gap: var(--spacing-3xl);
+    gap: var(--spacing-4xl);
     align-items: center;
 }
 
@@ -316,10 +316,11 @@
 }
 
 .about-text p {
-    margin-bottom: var(--spacing-md);
-    color: var(--color-text-light);
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-text-body);
     font-size: var(--font-size-lg);
-    line-height: var(--line-height);
+    line-height: 1.65;
+    max-width: 65ch;
 }
 
 .about-text p:last-child {
@@ -369,9 +370,14 @@
 
 .work-entry {
     position: relative;
-    padding-left: var(--spacing-xl);
+    padding-left: var(--spacing-2xl);
     border-left: 2px solid var(--color-border);
     transition: border-color var(--transition-base);
+    margin-bottom: var(--spacing-xl);
+}
+
+.work-entry:last-child {
+    margin-bottom: 0;
 }
 
 .work-entry:hover {
@@ -407,7 +413,7 @@
 .work-role {
     font-size: var(--font-size-lg);
     color: var(--color-text);
-    margin: 0;
+    margin: 0 0 var(--spacing-xs) 0;
     font-weight: var(--font-weight-semibold);
 }
 
@@ -430,10 +436,11 @@
 }
 
 .work-description {
-    color: var(--color-text-light);
-    margin-bottom: var(--spacing-sm);
+    color: var(--color-text-body);
+    margin-bottom: var(--spacing-md);
     font-size: var(--font-size-md);
-    max-width: 700px;
+    line-height: 1.6;
+    max-width: 65ch;
 }
 
 .work-tech-list {
@@ -647,28 +654,29 @@
 }
 
 .card-body {
-    padding: var(--spacing-lg);
+    padding: var(--spacing-xl);
 }
 
 .card-title {
     font-size: var(--font-size-lg);
     color: var(--color-text);
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
     font-weight: var(--font-weight-semibold);
+    line-height: 1.3;
 }
 
 .card-description {
-    color: var(--color-text-light);
-    margin-bottom: var(--spacing-md);
+    color: var(--color-text-body);
+    margin-bottom: var(--spacing-lg);
     font-size: var(--font-size-sm);
-    line-height: var(--line-height);
+    line-height: 1.6;
 }
 
 .card-links {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-md);
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
 }
 
 .card-link {
@@ -736,7 +744,7 @@
 
 .site-footer {
     background-color: var(--color-bg-alt);
-    padding: var(--spacing-2xl) 0;
+    padding: var(--spacing-3xl) 0;
     border-top: 1px solid var(--color-border);
 }
 
@@ -748,23 +756,24 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: var(--spacing-md);
+    gap: var(--spacing-lg);
 }
 
 .footer-copyright {
     font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
 }
 
 .footer-nav ul {
     display: flex;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-xl);
     flex-wrap: wrap;
 }
 
 .footer-nav a {
     font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
+    color: var(--color-text-light);
     text-decoration: none;
     transition: color var(--transition-fast);
     position: relative;
@@ -792,7 +801,7 @@
 
 .back-to-top {
     font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
+    color: var(--color-text-light);
     text-decoration: none;
     display: inline-flex;
     align-items: center;
